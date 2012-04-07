@@ -1,0 +1,264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF8142491530788600284D86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8142481530788600284D86 /* UIKit.framework */; };
+		DF81424B1530788600284D86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF81424A1530788600284D86 /* Foundation.framework */; };
+		DF81424D1530788600284D86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF81424C1530788600284D86 /* CoreGraphics.framework */; };
+		DF8142531530788700284D86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF8142511530788600284D86 /* InfoPlist.strings */; };
+		DF8142551530788700284D86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142541530788700284D86 /* main.m */; };
+		DF8142591530788700284D86 /* UBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142581530788700284D86 /* UBTAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DF8142441530788600284D86 /* UPregnancyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UPregnancyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF8142481530788600284D86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DF81424A1530788600284D86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DF81424C1530788600284D86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DF8142501530788600284D86 /* UPregnancyTime-Info.plist */ = {isa = PBXFileReference; path = "UPregnancyTime-Info.plist"; sourceTree = "<group>"; };
+		DF8142521530788600284D86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF8142541530788700284D86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DF8142561530788700284D86 /* UPregnancyTime-Prefix.pch */ = {isa = PBXFileReference; path = "UPregnancyTime-Prefix.pch"; sourceTree = "<group>"; };
+		DF8142571530788700284D86 /* UBTAppDelegate.h */ = {isa = PBXFileReference; path = UBTAppDelegate.h; sourceTree = "<group>"; };
+		DF8142581530788700284D86 /* UBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UBTAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF8142411530788600284D86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF8142491530788600284D86 /* UIKit.framework in Frameworks */,
+				DF81424B1530788600284D86 /* Foundation.framework in Frameworks */,
+				DF81424D1530788600284D86 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF8142391530788600284D86 = {
+			isa = PBXGroup;
+			children = (
+				DF81424E1530788600284D86 /* UPregnancyTime */,
+				DF8142471530788600284D86 /* Frameworks */,
+				DF8142451530788600284D86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF8142451530788600284D86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142441530788600284D86 /* UPregnancyTime.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF8142471530788600284D86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142481530788600284D86 /* UIKit.framework */,
+				DF81424A1530788600284D86 /* Foundation.framework */,
+				DF81424C1530788600284D86 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DF81424E1530788600284D86 /* UPregnancyTime */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142571530788700284D86 /* UBTAppDelegate.h */,
+				DF8142581530788700284D86 /* UBTAppDelegate.m */,
+				DF81424F1530788600284D86 /* Supporting Files */,
+			);
+			path = UPregnancyTime;
+			sourceTree = "<group>";
+		};
+		DF81424F1530788600284D86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142501530788600284D86 /* UPregnancyTime-Info.plist */,
+				DF8142511530788600284D86 /* InfoPlist.strings */,
+				DF8142541530788700284D86 /* main.m */,
+				DF8142561530788700284D86 /* UPregnancyTime-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF8142431530788600284D86 /* UPregnancyTime */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF81425C1530788700284D86 /* Build configuration list for PBXNativeTarget "UPregnancyTime" */;
+			buildPhases = (
+				DF8142401530788600284D86 /* Sources */,
+				DF8142411530788600284D86 /* Frameworks */,
+				DF8142421530788600284D86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UPregnancyTime;
+			productName = UPregnancyTime;
+			productReference = DF8142441530788600284D86 /* UPregnancyTime.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF81423B1530788600284D86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = UBT;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = DF81423E1530788600284D86 /* Build configuration list for PBXProject "UPregnancyTime" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DF8142391530788600284D86;
+			productRefGroup = DF8142451530788600284D86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF8142431530788600284D86 /* UPregnancyTime */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF8142421530788600284D86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF8142531530788700284D86 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF8142401530788600284D86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF8142551530788700284D86 /* main.m in Sources */,
+				DF8142591530788700284D86 /* UBTAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DF8142511530788600284D86 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF8142521530788600284D86 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF81425A1530788700284D86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DF81425B1530788700284D86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DF81425D1530788700284D86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UPregnancyTime/UPregnancyTime-Prefix.pch";
+				INFOPLIST_FILE = "UPregnancyTime/UPregnancyTime-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DF81425E1530788700284D86 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UPregnancyTime/UPregnancyTime-Prefix.pch";
+				INFOPLIST_FILE = "UPregnancyTime/UPregnancyTime-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF81423E1530788600284D86 /* Build configuration list for PBXProject "UPregnancyTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF81425A1530788700284D86 /* Debug */,
+				DF81425B1530788700284D86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF81425C1530788700284D86 /* Build configuration list for PBXNativeTarget "UPregnancyTime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF81425D1530788700284D86 /* Debug */,
+				DF81425E1530788700284D86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF81423B1530788600284D86 /* Project object */;
+}
