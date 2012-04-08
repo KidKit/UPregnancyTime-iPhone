@@ -7,25 +7,135 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF6BFBF6153083C300FC0AFD /* nav_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBF4153083C300FC0AFD /* nav_1.png */; };
+		DF6BFBF7153083C300FC0AFD /* nav_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBF5153083C300FC0AFD /* nav_1@2x.png */; };
+		DF6BFBFE1530859C00FC0AFD /* nav_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBF81530859C00FC0AFD /* nav_2.png */; };
+		DF6BFBFF1530859C00FC0AFD /* nav_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBF91530859C00FC0AFD /* nav_2@2x.png */; };
+		DF6BFC001530859C00FC0AFD /* nav_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBFA1530859C00FC0AFD /* nav_3.png */; };
+		DF6BFC011530859C00FC0AFD /* nav_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFBFB1530859C00FC0AFD /* nav_3@2x.png */; };
+		DF6BFC0A153087FA00FC0AFD /* nav_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFC08153087FA00FC0AFD /* nav_4.png */; };
+		DF6BFC0B153087FA00FC0AFD /* nav_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFC09153087FA00FC0AFD /* nav_4@2x.png */; };
+		DF6BFC0E153088C800FC0AFD /* tips_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFC0C153088C800FC0AFD /* tips_1.png */; };
+		DF6BFC0F153088C800FC0AFD /* tips_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF6BFC0D153088C800FC0AFD /* tips_1@2x.png */; };
 		DF8142491530788600284D86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8142481530788600284D86 /* UIKit.framework */; };
 		DF81424B1530788600284D86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF81424A1530788600284D86 /* Foundation.framework */; };
 		DF81424D1530788600284D86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF81424C1530788600284D86 /* CoreGraphics.framework */; };
 		DF8142531530788700284D86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF8142511530788600284D86 /* InfoPlist.strings */; };
 		DF8142551530788700284D86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142541530788700284D86 /* main.m */; };
 		DF8142591530788700284D86 /* UBTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142581530788700284D86 /* UBTAppDelegate.m */; };
+		DF8142711530791F00284D86 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142681530791F00284D86 /* FMDatabase.m */; };
+		DF8142721530791F00284D86 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81426A1530791F00284D86 /* FMDatabaseAdditions.m */; };
+		DF8142731530791F00284D86 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81426C1530791F00284D86 /* FMDatabasePool.m */; };
+		DF8142741530791F00284D86 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DF81426E1530791F00284D86 /* FMDatabaseQueue.m */; };
+		DF8142751530791F00284D86 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142701530791F00284D86 /* FMResultSet.m */; };
+		DF8142781530793600284D86 /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142771530793600284D86 /* NSDate+Helper.m */; };
+		DF81427A1530794F00284D86 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DF8142791530794F00284D86 /* libsqlite3.dylib */; };
+		DF81427C1530795D00284D86 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF81427B1530795D00284D86 /* QuartzCore.framework */; };
+		DF81429015307A0B00284D86 /* date_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428015307A0B00284D86 /* date_tab.png */; };
+		DF81429115307A0B00284D86 /* date_tab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428115307A0B00284D86 /* date_tab@2x.png */; };
+		DF81429615307A0B00284D86 /* search_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428615307A0B00284D86 /* search_bar.png */; };
+		DF81429715307A0B00284D86 /* search_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428715307A0B00284D86 /* search_bar@2x.png */; };
+		DF81429815307A0B00284D86 /* text_line_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428815307A0B00284D86 /* text_line_1.png */; };
+		DF81429915307A0B00284D86 /* text_line_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428915307A0B00284D86 /* text_line_1@2x.png */; };
+		DF81429A15307A0B00284D86 /* text_line_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428A15307A0B00284D86 /* text_line_2.png */; };
+		DF81429B15307A0B00284D86 /* text_line_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428B15307A0B00284D86 /* text_line_2@2x.png */; };
+		DF81429E15307A0B00284D86 /* tips_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428E15307A0B00284D86 /* tips_2.png */; };
+		DF81429F15307A0B00284D86 /* tips_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DF81428F15307A0B00284D86 /* tips_2@2x.png */; };
+		DF8142A315307A3500284D86 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8142A115307A3500284D86 /* HomeViewController.m */; };
+		DF8142A415307A3500284D86 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF8142A215307A3500284D86 /* HomeViewController.xib */; };
+		DFEFF2B71531C80500A390F4 /* TipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFEFF2B61531C80500A390F4 /* TipsViewController.m */; };
+		DFEFF2BA1531CFB500A390F4 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = DFEFF2B91531CFB500A390F4 /* close.png */; };
+		DFFDB10B15313F7F00FF6A47 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB10915313F7F00FF6A47 /* RootViewController.m */; };
+		DFFDB10C15313F7F00FF6A47 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFFDB10A15313F7F00FF6A47 /* RootViewController.xib */; };
+		DFFDB10E153169E000FF6A47 /* LabelProperty-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = DFFDB10D153169E000FF6A47 /* LabelProperty-Config.plist */; };
+		DFFDB11115316A0E00FF6A47 /* LabelConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB11015316A0E00FF6A47 /* LabelConverter.m */; };
+		DFFDB1141531722400FF6A47 /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFDB1121531722400FF6A47 /* paper.png */; };
+		DFFDB1151531722400FF6A47 /* paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DFFDB1131531722400FF6A47 /* paper@2x.png */; };
+		DFFDB11715317AA200FF6A47 /* ubabytime.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DFFDB11615317AA200FF6A47 /* ubabytime.sqlite */; };
+		DFFDB11C15317AD400FF6A47 /* DatabaseAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB11B15317AD400FF6A47 /* DatabaseAccess.m */; };
+		DFFDB12115317AE900FF6A47 /* PregnancyDaliyTips.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB11E15317AE900FF6A47 /* PregnancyDaliyTips.m */; };
+		DFFDB12215317AE900FF6A47 /* PregnancyDaliyTipsType.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB12015317AE900FF6A47 /* PregnancyDaliyTipsType.m */; };
+		DFFDB12715317B1600FF6A47 /* PregnacyPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB12415317B1600FF6A47 /* PregnacyPeriod.m */; };
+		DFFDB12815317B1600FF6A47 /* PregnancyWeeklyTips.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB12615317B1600FF6A47 /* PregnancyWeeklyTips.m */; };
+		DFFDB12B15317B4800FF6A47 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB12A15317B4800FF6A47 /* NSObject+Properties.m */; };
+		DFFDB12E15317B5A00FF6A47 /* NSString+PropertyKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFDB12D15317B5A00FF6A47 /* NSString+PropertyKVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF6BFBF4153083C300FC0AFD /* nav_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_1.png; sourceTree = "<group>"; };
+		DF6BFBF5153083C300FC0AFD /* nav_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_1@2x.png"; sourceTree = "<group>"; };
+		DF6BFBF81530859C00FC0AFD /* nav_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_2.png; sourceTree = "<group>"; };
+		DF6BFBF91530859C00FC0AFD /* nav_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_2@2x.png"; sourceTree = "<group>"; };
+		DF6BFBFA1530859C00FC0AFD /* nav_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_3.png; sourceTree = "<group>"; };
+		DF6BFBFB1530859C00FC0AFD /* nav_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_3@2x.png"; sourceTree = "<group>"; };
+		DF6BFC08153087FA00FC0AFD /* nav_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_4.png; sourceTree = "<group>"; };
+		DF6BFC09153087FA00FC0AFD /* nav_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_4@2x.png"; sourceTree = "<group>"; };
+		DF6BFC0C153088C800FC0AFD /* tips_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_1.png; sourceTree = "<group>"; };
+		DF6BFC0D153088C800FC0AFD /* tips_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tips_1@2x.png"; sourceTree = "<group>"; };
 		DF8142441530788600284D86 /* UPregnancyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UPregnancyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF8142481530788600284D86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DF81424A1530788600284D86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DF81424C1530788600284D86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DF8142501530788600284D86 /* UPregnancyTime-Info.plist */ = {isa = PBXFileReference; path = "UPregnancyTime-Info.plist"; sourceTree = "<group>"; };
+		DF8142501530788600284D86 /* UPregnancyTime-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UPregnancyTime-Info.plist"; sourceTree = "<group>"; };
 		DF8142521530788600284D86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DF8142541530788700284D86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DF8142561530788700284D86 /* UPregnancyTime-Prefix.pch */ = {isa = PBXFileReference; path = "UPregnancyTime-Prefix.pch"; sourceTree = "<group>"; };
-		DF8142571530788700284D86 /* UBTAppDelegate.h */ = {isa = PBXFileReference; path = UBTAppDelegate.h; sourceTree = "<group>"; };
+		DF8142561530788700284D86 /* UPregnancyTime-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UPregnancyTime-Prefix.pch"; sourceTree = "<group>"; };
+		DF8142571530788700284D86 /* UBTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UBTAppDelegate.h; sourceTree = "<group>"; };
 		DF8142581530788700284D86 /* UBTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UBTAppDelegate.m; sourceTree = "<group>"; };
+		DF8142671530791F00284D86 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		DF8142681530791F00284D86 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		DF8142691530791F00284D86 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		DF81426A1530791F00284D86 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		DF81426B1530791F00284D86 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		DF81426C1530791F00284D86 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		DF81426D1530791F00284D86 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		DF81426E1530791F00284D86 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		DF81426F1530791F00284D86 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		DF8142701530791F00284D86 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		DF8142761530793600284D86 /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
+		DF8142771530793600284D86 /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		DF8142791530794F00284D86 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		DF81427B1530795D00284D86 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DF81428015307A0B00284D86 /* date_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = date_tab.png; sourceTree = "<group>"; };
+		DF81428115307A0B00284D86 /* date_tab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "date_tab@2x.png"; sourceTree = "<group>"; };
+		DF81428615307A0B00284D86 /* search_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_bar.png; sourceTree = "<group>"; };
+		DF81428715307A0B00284D86 /* search_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_bar@2x.png"; sourceTree = "<group>"; };
+		DF81428815307A0B00284D86 /* text_line_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_line_1.png; sourceTree = "<group>"; };
+		DF81428915307A0B00284D86 /* text_line_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_line_1@2x.png"; sourceTree = "<group>"; };
+		DF81428A15307A0B00284D86 /* text_line_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_line_2.png; sourceTree = "<group>"; };
+		DF81428B15307A0B00284D86 /* text_line_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text_line_2@2x.png"; sourceTree = "<group>"; };
+		DF81428E15307A0B00284D86 /* tips_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips_2.png; sourceTree = "<group>"; };
+		DF81428F15307A0B00284D86 /* tips_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tips_2@2x.png"; sourceTree = "<group>"; };
+		DF8142A015307A3500284D86 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		DF8142A115307A3500284D86 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		DF8142A215307A3500284D86 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		DFEFF2B51531C80500A390F4 /* TipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsViewController.h; sourceTree = "<group>"; };
+		DFEFF2B61531C80500A390F4 /* TipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsViewController.m; sourceTree = "<group>"; };
+		DFEFF2B91531CFB500A390F4 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		DFFDB10815313F7F00FF6A47 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		DFFDB10915313F7F00FF6A47 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		DFFDB10A15313F7F00FF6A47 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		DFFDB10D153169E000FF6A47 /* LabelProperty-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LabelProperty-Config.plist"; sourceTree = "<group>"; };
+		DFFDB10F15316A0E00FF6A47 /* LabelConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelConverter.h; sourceTree = "<group>"; };
+		DFFDB11015316A0E00FF6A47 /* LabelConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelConverter.m; sourceTree = "<group>"; };
+		DFFDB1121531722400FF6A47 /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paper.png; sourceTree = "<group>"; };
+		DFFDB1131531722400FF6A47 /* paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paper@2x.png"; sourceTree = "<group>"; };
+		DFFDB11615317AA200FF6A47 /* ubabytime.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = ubabytime.sqlite; sourceTree = "<group>"; };
+		DFFDB11915317ACB00FF6A47 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		DFFDB11A15317AD400FF6A47 /* DatabaseAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseAccess.h; sourceTree = "<group>"; };
+		DFFDB11B15317AD400FF6A47 /* DatabaseAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseAccess.m; sourceTree = "<group>"; };
+		DFFDB11D15317AE900FF6A47 /* PregnancyDaliyTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyDaliyTips.h; sourceTree = "<group>"; };
+		DFFDB11E15317AE900FF6A47 /* PregnancyDaliyTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyDaliyTips.m; sourceTree = "<group>"; };
+		DFFDB11F15317AE900FF6A47 /* PregnancyDaliyTipsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyDaliyTipsType.h; sourceTree = "<group>"; };
+		DFFDB12015317AE900FF6A47 /* PregnancyDaliyTipsType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyDaliyTipsType.m; sourceTree = "<group>"; };
+		DFFDB12315317B1600FF6A47 /* PregnacyPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnacyPeriod.h; sourceTree = "<group>"; };
+		DFFDB12415317B1600FF6A47 /* PregnacyPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnacyPeriod.m; sourceTree = "<group>"; };
+		DFFDB12515317B1600FF6A47 /* PregnancyWeeklyTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyWeeklyTips.h; sourceTree = "<group>"; };
+		DFFDB12615317B1600FF6A47 /* PregnancyWeeklyTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyWeeklyTips.m; sourceTree = "<group>"; };
+		DFFDB12915317B4800FF6A47 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Properties.h"; sourceTree = "<group>"; };
+		DFFDB12A15317B4800FF6A47 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Properties.m"; sourceTree = "<group>"; };
+		DFFDB12C15317B5A00FF6A47 /* NSString+PropertyKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PropertyKVC.h"; sourceTree = "<group>"; };
+		DFFDB12D15317B5A00FF6A47 /* NSString+PropertyKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PropertyKVC.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF81427C1530795D00284D86 /* QuartzCore.framework in Frameworks */,
+				DF81427A1530794F00284D86 /* libsqlite3.dylib in Frameworks */,
 				DF8142491530788600284D86 /* UIKit.framework in Frameworks */,
 				DF81424B1530788600284D86 /* Foundation.framework in Frameworks */,
 				DF81424D1530788600284D86 /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +157,9 @@
 		DF8142391530788600284D86 = {
 			isa = PBXGroup;
 			children = (
+				DF81427F153079F000284D86 /* Resources */,
+				DF81425F153078B000284D86 /* Classes */,
+				DF814260153078B000284D86 /* XIB */,
 				DF81424E1530788600284D86 /* UPregnancyTime */,
 				DF8142471530788600284D86 /* Frameworks */,
 				DF8142451530788600284D86 /* Products */,
@@ -62,6 +177,8 @@
 		DF8142471530788600284D86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DF81427B1530795D00284D86 /* QuartzCore.framework */,
+				DF8142791530794F00284D86 /* libsqlite3.dylib */,
 				DF8142481530788600284D86 /* UIKit.framework */,
 				DF81424A1530788600284D86 /* Foundation.framework */,
 				DF81424C1530788600284D86 /* CoreGraphics.framework */,
@@ -82,12 +199,135 @@
 		DF81424F1530788600284D86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DFFDB11615317AA200FF6A47 /* ubabytime.sqlite */,
+				DFFDB10D153169E000FF6A47 /* LabelProperty-Config.plist */,
 				DF8142501530788600284D86 /* UPregnancyTime-Info.plist */,
 				DF8142511530788600284D86 /* InfoPlist.strings */,
 				DF8142541530788700284D86 /* main.m */,
 				DF8142561530788700284D86 /* UPregnancyTime-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DF81425F153078B000284D86 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DFFDB11815317ABB00FF6A47 /* DataModel */,
+				DFFDB10F15316A0E00FF6A47 /* LabelConverter.h */,
+				DFFDB11015316A0E00FF6A47 /* LabelConverter.m */,
+				DFFDB10615313F6300FF6A47 /* Root */,
+				DF81427E153079CE00284D86 /* Home */,
+				DF8142661530790A00284D86 /* Fmdb */,
+				DF814261153078C000284D86 /* Category */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DF814260153078B000284D86 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
+		DF814261153078C000284D86 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				DFFDB12C15317B5A00FF6A47 /* NSString+PropertyKVC.h */,
+				DFFDB12D15317B5A00FF6A47 /* NSString+PropertyKVC.m */,
+				DFFDB12915317B4800FF6A47 /* NSObject+Properties.h */,
+				DFFDB12A15317B4800FF6A47 /* NSObject+Properties.m */,
+				DF8142761530793600284D86 /* NSDate+Helper.h */,
+				DF8142771530793600284D86 /* NSDate+Helper.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		DF8142661530790A00284D86 /* Fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142671530791F00284D86 /* FMDatabase.h */,
+				DF8142681530791F00284D86 /* FMDatabase.m */,
+				DF8142691530791F00284D86 /* FMDatabaseAdditions.h */,
+				DF81426A1530791F00284D86 /* FMDatabaseAdditions.m */,
+				DF81426B1530791F00284D86 /* FMDatabasePool.h */,
+				DF81426C1530791F00284D86 /* FMDatabasePool.m */,
+				DF81426D1530791F00284D86 /* FMDatabaseQueue.h */,
+				DF81426E1530791F00284D86 /* FMDatabaseQueue.m */,
+				DF81426F1530791F00284D86 /* FMResultSet.h */,
+				DF8142701530791F00284D86 /* FMResultSet.m */,
+			);
+			name = Fmdb;
+			sourceTree = "<group>";
+		};
+		DF81427E153079CE00284D86 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DF8142A015307A3500284D86 /* HomeViewController.h */,
+				DF8142A115307A3500284D86 /* HomeViewController.m */,
+				DF8142A215307A3500284D86 /* HomeViewController.xib */,
+				DFEFF2B51531C80500A390F4 /* TipsViewController.h */,
+				DFEFF2B61531C80500A390F4 /* TipsViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		DF81427F153079F000284D86 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DFEFF2B91531CFB500A390F4 /* close.png */,
+				DFFDB1121531722400FF6A47 /* paper.png */,
+				DFFDB1131531722400FF6A47 /* paper@2x.png */,
+				DF6BFC08153087FA00FC0AFD /* nav_4.png */,
+				DF6BFC09153087FA00FC0AFD /* nav_4@2x.png */,
+				DF6BFBF81530859C00FC0AFD /* nav_2.png */,
+				DF6BFBF91530859C00FC0AFD /* nav_2@2x.png */,
+				DF6BFBFA1530859C00FC0AFD /* nav_3.png */,
+				DF6BFBFB1530859C00FC0AFD /* nav_3@2x.png */,
+				DF6BFBF4153083C300FC0AFD /* nav_1.png */,
+				DF6BFBF5153083C300FC0AFD /* nav_1@2x.png */,
+				DF81428015307A0B00284D86 /* date_tab.png */,
+				DF81428115307A0B00284D86 /* date_tab@2x.png */,
+				DF81428615307A0B00284D86 /* search_bar.png */,
+				DF81428715307A0B00284D86 /* search_bar@2x.png */,
+				DF81428815307A0B00284D86 /* text_line_1.png */,
+				DF81428915307A0B00284D86 /* text_line_1@2x.png */,
+				DF81428A15307A0B00284D86 /* text_line_2.png */,
+				DF81428B15307A0B00284D86 /* text_line_2@2x.png */,
+				DF6BFC0C153088C800FC0AFD /* tips_1.png */,
+				DF6BFC0D153088C800FC0AFD /* tips_1@2x.png */,
+				DF81428E15307A0B00284D86 /* tips_2.png */,
+				DF81428F15307A0B00284D86 /* tips_2@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DFFDB10615313F6300FF6A47 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				DFFDB10815313F7F00FF6A47 /* RootViewController.h */,
+				DFFDB10915313F7F00FF6A47 /* RootViewController.m */,
+				DFFDB10A15313F7F00FF6A47 /* RootViewController.xib */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		DFFDB11815317ABB00FF6A47 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				DFFDB12315317B1600FF6A47 /* PregnacyPeriod.h */,
+				DFFDB12415317B1600FF6A47 /* PregnacyPeriod.m */,
+				DFFDB12515317B1600FF6A47 /* PregnancyWeeklyTips.h */,
+				DFFDB12615317B1600FF6A47 /* PregnancyWeeklyTips.m */,
+				DFFDB11D15317AE900FF6A47 /* PregnancyDaliyTips.h */,
+				DFFDB11E15317AE900FF6A47 /* PregnancyDaliyTips.m */,
+				DFFDB11F15317AE900FF6A47 /* PregnancyDaliyTipsType.h */,
+				DFFDB12015317AE900FF6A47 /* PregnancyDaliyTipsType.m */,
+				DFFDB11A15317AD400FF6A47 /* DatabaseAccess.h */,
+				DFFDB11B15317AD400FF6A47 /* DatabaseAccess.m */,
+				DFFDB11915317ACB00FF6A47 /* Entity.h */,
+			);
+			name = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +340,7 @@
 				DF8142401530788600284D86 /* Sources */,
 				DF8142411530788600284D86 /* Frameworks */,
 				DF8142421530788600284D86 /* Resources */,
+				DF81427D1530798B00284D86 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -142,10 +383,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF8142531530788700284D86 /* InfoPlist.strings in Resources */,
+				DF81429015307A0B00284D86 /* date_tab.png in Resources */,
+				DF81429115307A0B00284D86 /* date_tab@2x.png in Resources */,
+				DF81429615307A0B00284D86 /* search_bar.png in Resources */,
+				DF81429715307A0B00284D86 /* search_bar@2x.png in Resources */,
+				DF81429815307A0B00284D86 /* text_line_1.png in Resources */,
+				DF81429915307A0B00284D86 /* text_line_1@2x.png in Resources */,
+				DF81429A15307A0B00284D86 /* text_line_2.png in Resources */,
+				DF81429B15307A0B00284D86 /* text_line_2@2x.png in Resources */,
+				DF81429E15307A0B00284D86 /* tips_2.png in Resources */,
+				DF81429F15307A0B00284D86 /* tips_2@2x.png in Resources */,
+				DF8142A415307A3500284D86 /* HomeViewController.xib in Resources */,
+				DF6BFBF6153083C300FC0AFD /* nav_1.png in Resources */,
+				DF6BFBF7153083C300FC0AFD /* nav_1@2x.png in Resources */,
+				DF6BFBFE1530859C00FC0AFD /* nav_2.png in Resources */,
+				DF6BFBFF1530859C00FC0AFD /* nav_2@2x.png in Resources */,
+				DF6BFC001530859C00FC0AFD /* nav_3.png in Resources */,
+				DF6BFC011530859C00FC0AFD /* nav_3@2x.png in Resources */,
+				DF6BFC0A153087FA00FC0AFD /* nav_4.png in Resources */,
+				DF6BFC0B153087FA00FC0AFD /* nav_4@2x.png in Resources */,
+				DF6BFC0E153088C800FC0AFD /* tips_1.png in Resources */,
+				DF6BFC0F153088C800FC0AFD /* tips_1@2x.png in Resources */,
+				DFFDB10C15313F7F00FF6A47 /* RootViewController.xib in Resources */,
+				DFFDB10E153169E000FF6A47 /* LabelProperty-Config.plist in Resources */,
+				DFFDB1141531722400FF6A47 /* paper.png in Resources */,
+				DFFDB1151531722400FF6A47 /* paper@2x.png in Resources */,
+				DFFDB11715317AA200FF6A47 /* ubabytime.sqlite in Resources */,
+				DFEFF2BA1531CFB500A390F4 /* close.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DF81427D1530798B00284D86 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DF8142401530788600284D86 /* Sources */ = {
@@ -154,6 +438,23 @@
 			files = (
 				DF8142551530788700284D86 /* main.m in Sources */,
 				DF8142591530788700284D86 /* UBTAppDelegate.m in Sources */,
+				DF8142711530791F00284D86 /* FMDatabase.m in Sources */,
+				DF8142721530791F00284D86 /* FMDatabaseAdditions.m in Sources */,
+				DF8142731530791F00284D86 /* FMDatabasePool.m in Sources */,
+				DF8142741530791F00284D86 /* FMDatabaseQueue.m in Sources */,
+				DF8142751530791F00284D86 /* FMResultSet.m in Sources */,
+				DF8142781530793600284D86 /* NSDate+Helper.m in Sources */,
+				DF8142A315307A3500284D86 /* HomeViewController.m in Sources */,
+				DFFDB10B15313F7F00FF6A47 /* RootViewController.m in Sources */,
+				DFFDB11115316A0E00FF6A47 /* LabelConverter.m in Sources */,
+				DFFDB11C15317AD400FF6A47 /* DatabaseAccess.m in Sources */,
+				DFFDB12115317AE900FF6A47 /* PregnancyDaliyTips.m in Sources */,
+				DFFDB12215317AE900FF6A47 /* PregnancyDaliyTipsType.m in Sources */,
+				DFFDB12715317B1600FF6A47 /* PregnacyPeriod.m in Sources */,
+				DFFDB12815317B1600FF6A47 /* PregnancyWeeklyTips.m in Sources */,
+				DFFDB12B15317B4800FF6A47 /* NSObject+Properties.m in Sources */,
+				DFFDB12E15317B5A00FF6A47 /* NSString+PropertyKVC.m in Sources */,
+				DFEFF2B71531C80500A390F4 /* TipsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +477,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -190,7 +491,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -201,14 +502,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -219,6 +520,7 @@
 		DF81425D1530788700284D86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UPregnancyTime/UPregnancyTime-Prefix.pch";
 				INFOPLIST_FILE = "UPregnancyTime/UPregnancyTime-Info.plist";
@@ -230,6 +532,7 @@
 		DF81425E1530788700284D86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UPregnancyTime/UPregnancyTime-Prefix.pch";
 				INFOPLIST_FILE = "UPregnancyTime/UPregnancyTime-Info.plist";
@@ -257,6 +560,7 @@
 				DF81425E1530788700284D86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
