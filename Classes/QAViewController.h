@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QAViewController : UIViewController
+@interface QAViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,retain)IBOutlet UIView *searchView;
+@property (nonatomic,retain)IBOutlet UITableView *resultView;
 @end
