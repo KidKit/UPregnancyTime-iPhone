@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>kTodayTips</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>做日常</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>nav_1</string>
+	</dict>
+    <key>kCheckList</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>时光机</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>nav_2</string>
+	</dict>
+	<key>kQuestionAndAnswer</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>问答</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>nav_3</string>
+	</dict>
+    <key>kSearchInfo</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>搜索</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>nav_4</string>
+	</dict>
+    <key>kSystemDefaultLabels</key>
+	<array>
+		<string>kTodayTips</string>
+		<string>kCheckList</string>
+		<string>kQuestionAndAnswer</string>
+		<string>kSearchInfo</string>
+	</array>
+</dict>
+</plist>
