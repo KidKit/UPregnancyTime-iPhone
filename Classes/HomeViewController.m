@@ -63,6 +63,13 @@
         [self loadPeriod];
         [self loadTipsTypes];
         [self loadTips];
+        UITabBarItem *tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1] autorelease];
+        self.tabBarItem = tabBarItem;
+        self.navigationItem.title = @"每日提醒";
+        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:self action:NULL] autorelease];
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
@@ -84,7 +91,7 @@
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
     self.dayLabel = [labelViewArray lastObject];
-    _dayLabel.frame = CGRectMake(0, 50, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
+    _dayLabel.frame = CGRectMake(0, 10, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
     [self updateDayLabel];
     [self.view addSubview:_dayLabel];
     [self.view bringSubviewToFront:_dayLabel];
@@ -147,7 +154,7 @@
         pageRange.location = 4*(i);
         NSArray * dataArray = [_tips subarrayWithRange:pageRange];
         [page populateTipsViewWithDataArray:dataArray atPageIndex:i pageCount:_pageCount];
-        page.frame = CGRectMake(0, 30, page.frame.size.width, page.frame.size.height);
+        page.frame = CGRectMake(0, 0, page.frame.size.width, page.frame.size.height);
         page.delegate=self;
         [_tipsViews addObject:page];
     }
@@ -240,49 +247,36 @@
     //NSLog(@"touchesEnded");
     UITouch *touch=[touches anyObject];
 	CGPoint point2=[touch locationInView:self.view];
-    if (fabs(point2.x-self.startPoint.x)>50) {		
-		if ((point2.x-self.startPoint.x)>0) {			
-			//向右边滑动,表示得到上一页			
-			--_currentPage;
-			if (_currentPage>=0) {
-				AHomeView *nextView=[_tipsViews objectAtIndex:_currentPage];
-				[self performTransitionRight:nextView];
-			}else{
-				_currentPage=0;
-			}
-		}else {			
-			//向左滑动，表示得到下一页
-			++_currentPage;
-			if (_currentPage<[_tipsViews count]) {				
-				AHomeView *nextView=[_tipsViews objectAtIndex:_currentPage];
-				[self performTransitionLeft:nextView];
-			}else {
-				_currentPage=[_tipsViews count]-1;
-			}
+    
+    CGFloat yOffSet = point2.y - _startPoint.y;
+    CGFloat xOffSet = point2.x - _startPoint.x;
+    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
+    NSLog(@"arg:%f",arg);
+    if (fabs(arg)<0.8) {
+        if (fabs(point2.y-_startPoint.y)>100) {
+            if ((point2.y-_startPoint.y)>0) {
+                //向下滑动
+                self.currentDate = [_currentDate dateByAddingTimeInterval:24*60*60];
+                [self loadTips];
+                [self updateDayLabel];
+                [self cleanTipsViews];
+                [self loadTipsViews];
+                [self performTransitionDown:nil];
+            }else {
+                //向上滑动
+                self.currentDate = [_currentDate dateByAddingTimeInterval:-24*60*60];
+                [self loadTips];
+                [self updateDayLabel];
+                [self cleanTipsViews];
+                [self loadTipsViews];
+                [self performTransitionUp:nil];
+            }
             
-		}
-	}else  if (fabs(point2.y-self.startPoint.y)>50) {
-        if ((point2.y-self.startPoint.y)>0) {
-            //向下滑动
-            self.currentDate = [_currentDate dateByAddingTimeInterval:24*60*60];
-            [self loadTips];
-            [self updateDayLabel];
-            [self cleanTipsViews];
-            [self loadTipsViews];
-            [self performTransitionDown:nil];
-        }else {
-            //向上滑动
-            self.currentDate = [_currentDate dateByAddingTimeInterval:-24*60*60];
-            [self loadTips];
-            [self updateDayLabel];
-            [self cleanTipsViews];
-            [self loadTipsViews];
-            [self performTransitionUp:nil];
+            
+            [self.view bringSubviewToFront:_dayLabel];
         }
-        
-        
-        [self.view bringSubviewToFront:_dayLabel];
     }
+    
 }
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesCancelled:touches withEvent:event];

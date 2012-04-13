@@ -13,17 +13,19 @@
 #import "TimeLineViewController.h"
 #import "QAViewController.h"
 #import "SearchViewController.h"
+#import "MenuViewController.h"
 
-@interface RootViewController : UIViewController
+@interface RootViewController : UIViewController<UIScrollViewDelegate>
 {
     UINavigationController *_homeController;
     UINavigationController *_timeLineController;
     UINavigationController *_qaController;
     UINavigationController *_searchController;
+    
 }
-@property (nonatomic,retain)IBOutlet UIView *navView;
-@property (nonatomic,retain)IBOutlet UIScrollView *contentView;
 @property (nonatomic,retain)UIViewController *currentViewController;
+@property (nonatomic,retain)UIViewController *menuController;
+@property (nonatomic,retain)IBOutlet UIView *contentView;
 
 -(IBAction)didNavLabelClick:(id)sender;
 

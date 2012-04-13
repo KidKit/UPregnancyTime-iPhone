@@ -56,7 +56,7 @@
 }
 */
 -(void)populateTipsViewWithDataArray:(NSArray*)dataArray atPageIndex:(int)pageIndex pageCount:(int) pageCount{
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
     for (int i=0;i<4;i++) {
         if(i>= [dataArray count]){
             if(i==0){
@@ -105,7 +105,7 @@
     }
     PagingView *pagingView = [[[PagingView alloc] initWithPageSize:pageCount] autorelease];
     pagingView.frame = CGRectMake(0, 0, pagingView.frame.size.width, pagingView.frame.size.height);
-    pagingView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height-30);
+    pagingView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height-60);
     [pagingView goToPage:pageIndex];
     [self addSubview:pagingView];
     

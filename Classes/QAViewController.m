@@ -24,6 +24,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UITabBarItem *tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3] autorelease];
+        self.tabBarItem = tabBarItem;
     }
     return self;
 }
@@ -38,7 +40,7 @@
     // Do any additional setup after loading the view from its nib.
     _resultView.backgroundColor = [UIColor clearColor];
     _searchView.backgroundColor = [UIColor clearColor];
-    _mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
+    _mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
     self.view.backgroundColor = [UIColor clearColor];;
 }
 

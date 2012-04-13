@@ -99,7 +99,7 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrame">{{0, 20}, {320, 32}}</string>
+								<string key="NSFrameSize">{320, 32}</string>
 								<reference key="NSSuperview" ref="313920473"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -112,7 +112,7 @@
 							<object class="IBUITableView" id="852083022">
 								<reference key="NSNextResponder" ref="313920473"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{30, 52}, {272, 378}}</string>
+								<string key="NSFrame">{{0, 32}, {320, 428}}</string>
 								<reference key="NSSuperview" ref="313920473"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -135,7 +135,7 @@
 								<float key="IBUISectionFooterHeight">22</float>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 30}, {320, 430}}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>

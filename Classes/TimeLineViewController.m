@@ -26,6 +26,8 @@
     if (self) {
         // Custom initialization
         [self loadPeriod];
+        UITabBarItem *tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2] autorelease];
+        self.tabBarItem = tabBarItem;
     }
     return self;
 }
@@ -39,7 +41,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
+    _scrollView.backgroundColor =[UIColor clearColor];
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
     self.dayLabel = [labelViewArray lastObject];

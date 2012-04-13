@@ -9,19 +9,20 @@
 #import "RootViewController.h"
 #define NAV_BASE_ORIGIN_X 18
 #define NAV_BASE_ORIGIN_Y -54
+#define MENU_VIEW_WIDTH 270
 
 @interface RootViewController ()
 {
-    
+    CGPoint touchBeganPoint;
 }
 -(void)performViewTransition:(UIViewController *)subViewController inView:(UIView*)parentView;
 -(void)switchToController:(int)tag;
 @end
 
 @implementation RootViewController
-@synthesize navView=_navView;
-@synthesize contentView=_contentView;
+@synthesize contentView = _contentView;
 @synthesize currentViewController=_currentViewController;
+@synthesize menuController = _menuController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,42 +34,24 @@
 }
 - (void)dealloc
 {
-    [_navView release];
-    [_contentView release];
     [_homeController release];
     [_timeLineController release];
     [_qaController release];
     [_searchController release];
+    [_menuController release];
     [super dealloc];
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    //显示导航标签
-    NSArray *labels = [LabelConverter getSystemDefaultLabelsInfo];
-    int i =0;
-    for(LabelInfo *label in labels){
-        CGRect navFrame = CGRectMake(NAV_BASE_ORIGIN_X+i*label.bgImage.size.width, NAV_BASE_ORIGIN_Y, label.bgImage.size.width, label.bgImage.size.height);
-        UIButton *navLabelButton = [[[UIButton alloc] initWithFrame:navFrame] autorelease];
-        [navLabelButton setBackgroundImage:label.bgImage forState:UIControlStateNormal];
-        navLabelButton.backgroundColor = [UIColor clearColor];
-        [navLabelButton setShowsTouchWhenHighlighted:YES];
-        //[navLabelButton setTitle:label.labelName forState:UIControlStateNormal];
-        [navLabelButton setReversesTitleShadowWhenHighlighted:YES];
-        navLabelButton.userInteractionEnabled = YES;
-        navLabelButton.tag=i;
-        UILabel *navLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 60, label.bgImage.size.width, 22)] autorelease];
-        navLabel.backgroundColor = [UIColor clearColor];
-        navLabel.font = [UIFont boldSystemFontOfSize:16];
-        navLabel.textAlignment = UITextAlignmentCenter;
-        navLabel.text=label.labelName;
-        navLabel.userInteractionEnabled = NO;
-        [navLabelButton addSubview:navLabel];
-        [navLabelButton addTarget:self action:@selector(didNavLabelClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_navView addSubview:navLabelButton];
-        i++;
-    }
+    //菜单view
+    self.menuController = [[[MenuViewController alloc] init] autorelease];
+    
+    [self.view insertSubview:_menuController.view belowSubview:_contentView];
+ 
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
+    
     //显示内容
     //_contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
     [self switchToController:0];
@@ -80,7 +63,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.navView = nil;
     self.contentView = nil;
 }
 
@@ -103,9 +85,9 @@
         {
             if(_homeController==nil){
                 HomeViewController *hvc = [[[HomeViewController alloc] init] autorelease];
-                CGRect frame = CGRectMake(0, -30, hvc.view.frame.size.width, hvc.view.frame.size.height);
+                CGRect frame = CGRectMake(0, 0, hvc.view.frame.size.width, hvc.view.frame.size.height);
                 _homeController = [[UINavigationController alloc] initWithRootViewController:hvc];
-                _homeController.navigationBarHidden = YES;
+                _homeController.navigationBarHidden = NO;
                 _homeController.view.frame = frame;
             }
             [self performViewTransition:_homeController inView:_contentView];
@@ -132,7 +114,7 @@
                 _qaController.navigationBarHidden = YES;
                 _qaController.view.frame = frame;
             }
-            [self performViewTransition:_qaController inView:_contentView];
+            [self performViewTransition:_qaController inView:self.view];
             break;
         }
         case 3:
@@ -164,4 +146,57 @@
     }];
 }
 
+#pragma mark - touch action
+
+// Check touch position in this method (Add by Ethan, 2011-11-27)
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    NSLog(@"touchesBegan");
+    //NSLog(@"touchesBegan");
+    UITouch *touch=[touches anyObject];
+	touchBeganPoint=[touch locationInView:self.view];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    //NSLog(@"touchesMoved");
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+    CGFloat yOffSet = touchPoint.y - touchBeganPoint.y;
+    CGFloat xOffSet = touchPoint.x - touchBeganPoint.x;
+    
+    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
+    if (fabs(arg)>0.8f&&xOffSet<MENU_VIEW_WIDTH&&_contentView.frame.origin.x<MENU_VIEW_WIDTH) {
+        NSLog(@"arg:%f",arg);
+        _contentView.frame = CGRectMake(xOffSet, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+    }
+    
+    
+    
+}
+// reset indicators when touch ended (Add by Ethan, 2011-11-27)
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touchesEnded");
+    UITouch *touch = [touches anyObject];
+    CGPoint touchPoint = [touch locationInView:self.view];
+    CGFloat yOffSet = touchPoint.y - touchBeganPoint.y;
+    CGFloat xOffSet = touchPoint.x - touchBeganPoint.x;
+    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
+    
+    if(xOffSet>100){
+        if (fabs(arg)>0.8f) {
+            _contentView.layer.shadowColor = [UIColor blackColor].CGColor;
+            _contentView.layer.shadowOpacity = 0.4f;
+            _contentView.layer.shadowOffset = CGSizeMake(-12.0, 1.0f);
+            _contentView.layer.shadowRadius = 7.0f;
+            _contentView.layer.masksToBounds = NO;
+            [UIView animateWithDuration:0.2 animations:^{
+                _contentView.frame = CGRectMake(MENU_VIEW_WIDTH, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+            } ];
+        }
+    }else {
+        [UIView animateWithDuration:0.2 animations:^{
+            _contentView.frame = CGRectMake(0, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+        } ];
+    }
+    
+}
 @end
