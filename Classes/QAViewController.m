@@ -15,6 +15,9 @@
 @implementation QAViewController
 @synthesize searchView = _searchView;
 @synthesize resultView=_resultView;
+@synthesize mainView=_mainView;
+@synthesize searchTextField = _searchTextField;
+@synthesize overlay = _overlay;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,14 +27,19 @@
     }
     return self;
 }
-
+- (void)dealloc
+{
+    [_overlay release];
+    [super dealloc];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _searchView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"search_bar"]];
     _resultView.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
+    _searchView.backgroundColor = [UIColor clearColor];
+    _mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
+    self.view.backgroundColor = [UIColor clearColor];;
 }
 
 - (void)viewDidUnload
@@ -39,6 +47,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.mainView = nil;
+    self.searchView = nil;
+    self.resultView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -62,8 +73,42 @@
         // Create a cell to display an ingredient.  
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    cell.textLabel.text = @"test";
     return cell;
 }
+#pragma mark - UITextFieldDelegate
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    self.overlay = [[[OverlayViewController alloc] init] autorelease];
+    _overlay.delegate = self;
+    CGFloat xaxis = _resultView.frame.origin.x;
+    CGFloat yaxis = _resultView.frame.origin.y;
+    CGFloat width = _resultView.frame.size.width;
+    CGFloat height = _resultView.frame.size.height;
+    CGRect frame = CGRectMake(xaxis, yaxis, width, height);
+    _overlay.view.frame = frame;
+    _overlay.view.backgroundColor = [UIColor grayColor];
+    _overlay.view.alpha = 0.5;
+    [_mainView insertSubview:_overlay.view aboveSubview:_resultView];
+    
+    NSLog(@"UITextFieldDelegate-textFieldDidBeginEditing");
+}
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    NSLog(@"UITextFieldDelegate-textFieldShouldClear");
+    return YES;
+}// called when clear button pressed. return NO to ignore (no notifications)
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSLog(@"UITextFieldDelegate-textFieldShouldClear");
+    [_overlay.view removeFromSuperview];
+    [_searchTextField resignFirstResponder];
+    return YES;
+}
 
+#pragma mark - OverlayViewControllerDelegate
+
+-(void)touchBeginOnOverlayView{
+    [_overlay.view removeFromSuperview];
+    [_searchTextField resignFirstResponder];
+    
+}
 @end

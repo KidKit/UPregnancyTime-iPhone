@@ -72,7 +72,7 @@
     //显示内容
     //_contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
     [self switchToController:0];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_bg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"root_bg"]];
 }
 
 - (void)viewDidUnload

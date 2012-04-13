@@ -114,7 +114,7 @@
 -(void)loadPeriod{
     self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnacyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
     //[[[NSDate date] dateByAddingTimeInterval:(24*60*60*220)] timeIntervalSince1970]
-    NSLog(@"_period.begin_date:%@",_period.begin_date);
+    //NSLog(@"_period.begin_date:%@",_period.begin_date);
 }
 
 -(void)loadTipsTypes{
@@ -182,10 +182,10 @@
 -(int)sequenceInDate:(NSDate *)date{
     //开始时间距离实际当前时间的天数
     int realDaysAgo = [_period.begin_date daysAgoAgainstMidnight];
-    NSLog(@"days ago:%@ with %d",_period.begin_date,realDaysAgo);
+    //NSLog(@"days ago:%@ with %d",_period.begin_date,realDaysAgo);
     //给定时间距离当前时间的天数
     int currentDaysAgo = [date daysAgoAgainstMidnight];
-    NSLog(@"days ago:%@ with %d",date,currentDaysAgo);
+    //NSLog(@"days ago:%@ with %d",date,currentDaysAgo);
     return realDaysAgo-currentDaysAgo;
 }
 
@@ -286,7 +286,7 @@
 }
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
     [super touchesCancelled:touches withEvent:event];
-    NSLog(@"touchesCancelled");
+    //NSLog(@"touchesCancelled");
 }
 
 
