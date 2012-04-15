@@ -14,6 +14,7 @@
     int _pageCount;
     int _sequanceInDate;
     int _sequanceInWeek;
+    int _currentTipsPageIndex;
 }
 
 -(void)loadPeriod;
@@ -22,11 +23,7 @@
 
 -(void)loadTipsTypes;
 
--(void)cleanTipsViews;
-
 -(void)loadTipsViews;
-
--(void)showTipsViewsWithAnimation:(CATransition *)animation;
 
 -(void)updateDayLabel;
 
@@ -34,13 +31,6 @@
 
 -(int)sequenceInWeek:(int)sequenceInDate;
 
--(void)performTransitionLeft:(UIView *)View;
-
--(void)performTransitionRight:(UIView *)View;
-
--(void)performTransitionUp:(UIView *)View;
-
--(void)performTransitionDown:(UIView *)View;
 
 @end
 
@@ -48,10 +38,12 @@
 @synthesize tipsTypes = _tipsTypes;
 @synthesize tips = _tips;
 @synthesize startPoint=_startPoint;
-@synthesize tipsViews = _tipsViews;
 @synthesize dayLabel=_dayLabel;
 @synthesize currentDate=_currentDate;
 @synthesize period = _period;
+@synthesize tipsTableView=_tipsTableView;
+@synthesize tipsViews = _tipsViews;
+@synthesize rootDelegate=_rootDelegate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,10 +55,8 @@
         [self loadPeriod];
         [self loadTipsTypes];
         [self loadTips];
-        UITabBarItem *tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:1] autorelease];
-        self.tabBarItem = tabBarItem;
         self.navigationItem.title = @"每日提醒";
-        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:self action:NULL] autorelease];
+        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:_rootDelegate action:@selector(onMenuButtonClicked)] autorelease];
         [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
         self.navigationItem.leftBarButtonItem = leftButton;
@@ -77,7 +67,6 @@
 {
     [_tipsTypes release];
     [_tips release];
-    [_tipsViews release];
     [_period release];
     [_currentDate release];
     [super dealloc];
@@ -85,9 +74,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self cleanTipsViews];
+    _tipsTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
+    NSLog(@"_tipsTableView frame:%f,%f,%f,%f",_tipsTableView.frame.origin.x,_tipsTableView.frame.origin.y,_tipsTableView.frame.size.width,_tipsTableView.frame.size.height);
     [self loadTipsViews];
-    [self showTipsViewsWithAnimation:nil];
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
     self.dayLabel = [labelViewArray lastObject];
@@ -104,6 +93,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.dayLabel = nil;
+    self.tipsTableView = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -159,30 +149,6 @@
         [_tipsViews addObject:page];
     }
 }
--(void)showTipsViewsWithAnimation:(CATransition *)transition{
-    if([_tipsViews count]==0){
-        return;
-    }
-    UIView *page = [_tipsViews objectAtIndex:0];
-    if (transition) {
-        [self.view insertSubview:page atIndex:0];
-        [self viewWillDisappear:YES];
-        [self.view.layer addAnimation:transition forKey:nil];
-    }else {
-        [self.view addSubview:page];
-    }
-    
-}
-
--(void)cleanTipsViews{
-    if ([_tips count]>0) {
-        for (AHomeView *page in _tipsViews) {
-            [page removeFromSuperview];
-        }
-    }else {
-        NSLog(@"error data at day:%d",[self sequenceInDate:_currentDate]);
-    }
-}
 -(void)updateDayLabel{
     [_dayLabel populateWithDate:_currentDate sequenceInWeek:_sequanceInWeek sequenceInDate:_sequanceInDate];
 }
@@ -206,124 +172,46 @@
     return weekly;
 }
 
-#pragma mark - TipsDetailViewDelegate
-
--(void)closeTips:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
 
 #pragma mark - AHomeViewDelegate
 
 -(void)onDetailButtonClicked:(id)sender{
-    CGRect frame = self.view.frame;
-    NSString *bgImageName = @"tips_1@2x";
     UIButton *button = (UIButton *)sender;
     PregnancyDaliyTips *tips = [_tips objectAtIndex:button.tag];
-    TipsViewController *tvc = [[[TipsViewController alloc] initWithBgImageName:bgImageName withParentViewFrame:frame data:tips] autorelease];
-    tvc.delegate = self;
-    tvc.modalPresentationStyle = UIModalPresentationPageSheet;
-    tvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    tvc.view.frame = frame;
-    //[self presentModalViewController:tvc animated:YES];
-    [self presentViewController:tvc animated:YES completion:NULL];
+    TipsViewController *tvc = [[TipsViewController alloc] initWithdata:tips];
+    [self.navigationController pushViewController:tvc animated:YES];
+    [tvc release];
+}
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [_tipsViews count];
 }
 
-#pragma mark - UIResponder
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesBegan:touches withEvent:event];
-    //NSLog(@"touchesBegan");
-    UITouch *touch=[touches anyObject];
-	CGPoint point1=[touch locationInView:self.view];
-	self.startPoint=point1;
-    
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesMoved:touches withEvent:event];
-    //NSLog(@"touchesMoved");
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
-}
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesEnded:touches withEvent:event];
-    //NSLog(@"touchesEnded");
-    UITouch *touch=[touches anyObject];
-	CGPoint point2=[touch locationInView:self.view];
-    
-    CGFloat yOffSet = point2.y - _startPoint.y;
-    CGFloat xOffSet = point2.x - _startPoint.x;
-    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
-    NSLog(@"arg:%f",arg);
-    if (fabs(arg)<0.8) {
-        if (fabs(point2.y-_startPoint.y)>100) {
-            if ((point2.y-_startPoint.y)>0) {
-                //向下滑动
-                self.currentDate = [_currentDate dateByAddingTimeInterval:24*60*60];
-                [self loadTips];
-                [self updateDayLabel];
-                [self cleanTipsViews];
-                [self loadTipsViews];
-                [self performTransitionDown:nil];
-            }else {
-                //向上滑动
-                self.currentDate = [_currentDate dateByAddingTimeInterval:-24*60*60];
-                [self loadTips];
-                [self updateDayLabel];
-                [self cleanTipsViews];
-                [self loadTipsViews];
-                [self performTransitionUp:nil];
-            }
-            
-            
-            [self.view bringSubviewToFront:_dayLabel];
-        }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"TipsViewCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)  
+    {  
+        // Create a cell to display an ingredient.  
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        [cell addSubview:[_tipsViews objectAtIndex:indexPath.row]];
     }
-    
-}
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{
-    [super touchesCancelled:touches withEvent:event];
-    //NSLog(@"touchesCancelled");
+    return  cell;
 }
 
-
-
-//翻页向左
--(void)performTransitionLeft:(UIView *)View{
-	CATransition *transition = [CATransition animation];
-	transition.duration = 0.3;
-	transition.type = @"pageCurl";
-	transition.subtype = kCATransitionFromRight;
-	[[self.view.subviews objectAtIndex:0] removeFromSuperview];
-	[self.view insertSubview:View atIndex:0];
-	[self viewWillDisappear:YES];
-	[self.view.layer addAnimation:transition forKey:nil];
-	
-	
-}
-//翻页向右
--(void)performTransitionRight:(UIView *)View{
-	CATransition *transition = [CATransition animation];
-	transition.duration = 0.3;
-	transition.type = @"pageUnCurl";
-	transition.subtype = kCATransitionFromRight;
-	[[self.view.subviews objectAtIndex:0] removeFromSuperview];
-	[self.view insertSubview:View atIndex:0];
-	[self viewWillDisappear:YES];
-	[self.view.layer addAnimation:transition forKey:nil];	
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 416.0f;
 }
 
--(void)performTransitionUp:(UIView *)View{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromTop;
-    [self showTipsViewsWithAnimation:transition];
-}
+#pragma mark - UIView override
 
--(void)performTransitionDown:(UIView *)View{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromBottom;
-    [self showTipsViewsWithAnimation:transition];
+- (BOOL)touchesShouldBegin:(NSSet *)touches withEvent:(UIEvent *)event inContentView:(UIView *)view{
+    return NO;
 }
 
 @end

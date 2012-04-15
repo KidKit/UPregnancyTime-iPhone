@@ -10,35 +10,40 @@
 #define NAV_BASE_ORIGIN_X 18
 #define NAV_BASE_ORIGIN_Y -54
 #define MENU_VIEW_WIDTH 270
+#define kTriggerOffSet 120
 
 @interface RootViewController ()
 {
     CGPoint touchBeganPoint;
 }
--(void)performViewTransition:(UIViewController *)subViewController inView:(UIView*)parentView;
--(void)switchToController:(int)tag;
+-(void)performViewTransition:(UIViewController *)subViewController;
+-(void)switchToControllerWithKey:(NSString *)controllerKey;
+-(void)moveContentViewToRight;
+-(void)moveContentViewToOrigin;
+-(void)dismissContentView;
+- (void)handlePanRecognizer:(UIPanGestureRecognizer*)recognizer;
 @end
 
 @implementation RootViewController
 @synthesize contentView = _contentView;
-@synthesize currentViewController=_currentViewController;
+@synthesize currentViewControllerKey=_currentViewControllerKey;
 @synthesize menuController = _menuController;
+@synthesize functionControllers = _functionControllers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.functionControllers = [NSMutableDictionary dictionary];
     }
     return self;
 }
 - (void)dealloc
 {
-    [_homeController release];
-    [_timeLineController release];
-    [_qaController release];
-    [_searchController release];
     [_menuController release];
+    [_functionControllers release];
+    [_currentViewControllerKey release];
     [super dealloc];
 }
 - (void)viewDidLoad
@@ -47,15 +52,43 @@
     // Do any additional setup after loading the view from its nib.
     //菜单view
     self.menuController = [[[MenuViewController alloc] init] autorelease];
+    _menuController.rootDelegate = self;
     
     [self.view insertSubview:_menuController.view belowSubview:_contentView];
  
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
     
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    
+    
     //显示内容
     //_contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
-    [self switchToController:0];
+    UINavigationController *_homeController = [_functionControllers valueForKey:kTodayTips];
+    if(_homeController==nil){
+        HomeViewController *hvc = [[[HomeViewController alloc] init] autorelease];
+        hvc.rootDelegate = self;
+        CGRect frame = CGRectMake(0, 0, hvc.view.frame.size.width, hvc.view.frame.size.height);
+        _homeController = [[[UINavigationController alloc] initWithRootViewController:hvc] autorelease];
+        _homeController.navigationBarHidden = NO;
+        _homeController.view.frame = frame;
+        [_contentView addSubview:_homeController.view];
+        [_functionControllers setValue:_homeController forKey:kTodayTips];
+    }
+    self.currentViewControllerKey = kTodayTips;
+    
+    //设置背景
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"root_bg"]];
+    
+    //响应触摸事件
+    UIPanGestureRecognizer* panRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanRecognizer:)] autorelease];
+    [_contentView addGestureRecognizer:panRecognizer];
+    _contentView.layer.shadowColor = [UIColor blackColor].CGColor;
+    _contentView.layer.shadowOpacity = 0.4f;
+    _contentView.layer.shadowOffset = CGSizeMake(-12.0, 1.0f);
+    _contentView.layer.shadowRadius = 7.0f;
+    _contentView.layer.masksToBounds = NO;
 }
 
 - (void)viewDidUnload
@@ -71,132 +104,124 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - IBAction
-
--(IBAction)didNavLabelClick:(id)sender{
-    UIButton *button = (UIButton*)sender;
-    [self switchToController:button.tag];
-    
-}
-
--(void)switchToController:(int)tag{
-    switch (tag) {
-        case 0:
-        {
-            if(_homeController==nil){
-                HomeViewController *hvc = [[[HomeViewController alloc] init] autorelease];
-                CGRect frame = CGRectMake(0, 0, hvc.view.frame.size.width, hvc.view.frame.size.height);
-                _homeController = [[UINavigationController alloc] initWithRootViewController:hvc];
-                _homeController.navigationBarHidden = NO;
-                _homeController.view.frame = frame;
-            }
-            [self performViewTransition:_homeController inView:_contentView];
-            break;
+-(void)switchToControllerWithKey:(NSString *)controllerKey{
+    UINavigationController *controller = [_functionControllers valueForKey:controllerKey];
+    if(controller==nil){
+        UIViewController *baseController = nil;
+        if ([controllerKey isEqualToString:kTodayTips]) {
+            baseController = [[[HomeViewController alloc] init] autorelease];
         }
-        case 1:
-        {
-            if(_timeLineController==nil){
-                TimeLineViewController *tvc = [[[TimeLineViewController alloc] init] autorelease];
-                CGRect frame = CGRectMake(0, -30, tvc.view.frame.size.width, tvc.view.frame.size.height);
-                _timeLineController = [[UINavigationController alloc] initWithRootViewController:tvc];
-                _timeLineController.navigationBarHidden = YES;
-                _timeLineController.view.frame = frame;
-            }
-            [self performViewTransition:_timeLineController inView:_contentView];
-            break;
+        if ([controllerKey isEqualToString:kTimeline]) {
+            baseController = [[[TimeLineViewController alloc] init] autorelease];
         }
-        case 2:
-        {
-            if(_qaController==nil){
-                QAViewController *qvc = [[[QAViewController alloc] init] autorelease];
-                CGRect frame = CGRectMake(0, -30, qvc.view.frame.size.width, qvc.view.frame.size.height);
-                _qaController = [[UINavigationController alloc] initWithRootViewController:qvc];
-                _qaController.navigationBarHidden = YES;
-                _qaController.view.frame = frame;
-            }
-            [self performViewTransition:_qaController inView:self.view];
-            break;
+        if ([controllerKey isEqualToString:kQuestionAndAnswer]) {
+            baseController = [[[QAViewController alloc] init] autorelease];
         }
-        case 3:
-        {
-            if(_searchController==nil){
-                SearchViewController *svc = [[[SearchViewController alloc] init] autorelease];
-                CGRect frame = CGRectMake(0, -30, svc.view.frame.size.width, svc.view.frame.size.height);
-                _searchController = [[UINavigationController alloc] initWithRootViewController:svc];
-                _searchController.navigationBarHidden = YES;
-                _searchController.view.frame = frame;
-            }
-            [self performViewTransition:_searchController inView:_contentView];
-            break;
+        if ([controllerKey isEqualToString:kSearchInfo]) {
+            baseController = [[[SearchViewController alloc] init] autorelease];
         }
-            
-        default:
-            break;
+        if(baseController){
+            if ([baseController respondsToSelector:@selector(setRootDelegate:)]) {
+                [baseController performSelector:@selector(setRootDelegate:) withObject:self];
+            }
+            CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
+            controller = [[[UINavigationController alloc] initWithRootViewController:baseController] autorelease];
+            controller.navigationBarHidden = NO;
+            controller.view.frame = frame;
+            [_functionControllers setValue:controller forKey:controllerKey];
+        }
+        //TODO
+    }
+    if (controller) {
+        [self performViewTransition:controller];
+        self.currentViewControllerKey = controllerKey;
     }
 }
 
 #pragma mark - animation
 
--(void)performViewTransition:(UIViewController *)subViewController inView:(UIView*)parentView{
-    [UIView transitionWithView:parentView duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-        [_currentViewController.view removeFromSuperview];
-        [parentView addSubview:subViewController.view];
+-(void)performViewTransition:(UIViewController *)subViewController{
+    UIViewController *_currentViewController = [_functionControllers valueForKey:_currentViewControllerKey];
+    [UIView animateWithDuration:0.2 animations:^{
+        if(subViewController!=_currentViewController){
+            //NSLog(@"content view changed");
+            [_currentViewController.view removeFromSuperview];
+            CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
+            subViewController.view.frame = frame;
+            [_contentView addSubview:subViewController.view];
+        }
+        _contentView.frame = CGRectMake(0, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+       
+        
     } completion:^(BOOL finished) {
-        self.currentViewController = subViewController;
+        
     }];
 }
-
-#pragma mark - touch action
-
-// Check touch position in this method (Add by Ethan, 2011-11-27)
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesBegan");
-    //NSLog(@"touchesBegan");
-    UITouch *touch=[touches anyObject];
-	touchBeganPoint=[touch locationInView:self.view];
+-(void)moveContentViewToRight{
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        _contentView.frame = CGRectMake(MENU_VIEW_WIDTH, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+    } ];
+}
+-(void)moveContentViewToOrigin{
+    [UIView animateWithDuration:0.2 animations:^{
+        _contentView.frame = CGRectMake(0, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+    } ];
+}
+-(void)dismissContentView{
+    [UIView animateWithDuration:0.1 animations:^{
+        _contentView.frame = CGRectMake(self.view.frame.size.width, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+    } ];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    //NSLog(@"touchesMoved");
-    UITouch *touch = [touches anyObject];
-    CGPoint touchPoint = [touch locationInView:self.view];
-    CGFloat yOffSet = touchPoint.y - touchBeganPoint.y;
-    CGFloat xOffSet = touchPoint.x - touchBeganPoint.x;
-    
-    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
-    if (fabs(arg)>0.8f&&xOffSet<MENU_VIEW_WIDTH&&_contentView.frame.origin.x<MENU_VIEW_WIDTH) {
-        NSLog(@"arg:%f",arg);
-        _contentView.frame = CGRectMake(xOffSet, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
-    }
-    
-    
-    
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSLog(@"scrollViewWillBeginDragging");
 }
-// reset indicators when touch ended (Add by Ethan, 2011-11-27)
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesEnded");
-    UITouch *touch = [touches anyObject];
-    CGPoint touchPoint = [touch locationInView:self.view];
-    CGFloat yOffSet = touchPoint.y - touchBeganPoint.y;
-    CGFloat xOffSet = touchPoint.x - touchBeganPoint.x;
-    CGFloat arg = ((xOffSet/sqrt((yOffSet*yOffSet+xOffSet*xOffSet))));
-    
-    if(xOffSet>100){
-        if (fabs(arg)>0.8f) {
-            _contentView.layer.shadowColor = [UIColor blackColor].CGColor;
-            _contentView.layer.shadowOpacity = 0.4f;
-            _contentView.layer.shadowOffset = CGSizeMake(-12.0, 1.0f);
-            _contentView.layer.shadowRadius = 7.0f;
-            _contentView.layer.masksToBounds = NO;
-            [UIView animateWithDuration:0.2 animations:^{
-                _contentView.frame = CGRectMake(MENU_VIEW_WIDTH, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
-            } ];
-        }
+
+#pragma mark - RootViewControllerDelegate
+-(void)onMenuButtonClicked{
+    if(_contentView.frame.origin.x!=0){
+        [self moveContentViewToOrigin];
     }else {
-        [UIView animateWithDuration:0.2 animations:^{
-            _contentView.frame = CGRectMake(0, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
-        } ];
+        [self moveContentViewToRight];
     }
     
+}
+-(void)onMenuItemClickedWithInfo:(LabelInfo *)labelInfo{
+    [self switchToControllerWithKey:labelInfo.identifier];
+}
+
+#pragma mark - UISwipeGestureRecognizer
+
+- (void)handlePanRecognizer:(UIPanGestureRecognizer*)recognizer{
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        //NSLog(@"testRecognizer begin:%@",recognizer);
+        if(_contentView.frame.origin.x!=0){
+            [self moveContentViewToOrigin];
+        }
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        if(_contentView.frame.origin.x>=0){
+            CGFloat xOffSet = [recognizer translationInView:[[UIApplication sharedApplication] keyWindow]].x;                
+            _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
+        }
+    }
+    else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (_contentView.frame.origin.x < -kTriggerOffSet){
+            //[self moveToLeftSide];
+            [self moveContentViewToOrigin];
+        // animate to right side
+        }else if (_contentView.frame.origin.x > kTriggerOffSet){
+            //[self moveToRightSide];
+            [self moveContentViewToRight];
+        // reset
+        }else{
+            [self moveContentViewToOrigin];
+        }
+
+    }
 }
 @end

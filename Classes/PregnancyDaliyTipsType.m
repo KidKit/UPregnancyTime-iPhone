@@ -13,6 +13,13 @@
 @synthesize name;
 @synthesize name_index;
 
+- (void)dealloc
+{
+    [name release];
+    [name_index release];
+    [super dealloc];
+}
+
 -(NSString *)tableName{
     return @"pregnancy_daliy_tips_type";
 }

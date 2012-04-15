@@ -56,7 +56,6 @@
 }
 */
 -(void)populateTipsViewWithDataArray:(NSArray*)dataArray atPageIndex:(int)pageIndex pageCount:(int) pageCount{
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
     for (int i=0;i<4;i++) {
         if(i>= [dataArray count]){
             if(i==0){

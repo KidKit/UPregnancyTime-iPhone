@@ -10,25 +10,13 @@
 #import "QuartzCore/QuartzCore.h"
 #import "PregnancyDaliyTips.h"
 
-
-@protocol TipsDetailViewDelegate;
 @interface TipsViewController : UIViewController
 
 @property (nonatomic,retain)PregnancyDaliyTips *tips;
-@property (nonatomic,copy) NSString *bgImageName;
-@property (nonatomic,retain)UIScrollView *detailTips;
-@property (nonatomic,retain)UILabel *tipsTitle;
-@property (nonatomic,retain)UITextView *tipsDetail;
-@property (nonatomic,retain)UIButton *closeButton;
-@property (nonatomic,assign)id<TipsDetailViewDelegate> delegate;
+@property (nonatomic,retain)IBOutlet UIScrollView *contentView;
+@property (nonatomic,retain)IBOutlet UITextView *tipsDetailView;
+@property (nonatomic,retain)IBOutlet UIScrollView *actionBar;
 
--(id)initWithBgImageName:(NSString*)bgImageName withParentViewFrame:(CGRect)parentFrame data:(PregnancyDaliyTips*)tips;
-
--(IBAction)close:(id)sender;
-@end
-
-@protocol TipsDetailViewDelegate <NSObject>
-
--(void)closeTips:(id)sender;
+-(id)initWithdata:(PregnancyDaliyTips*)tips;
 
 @end

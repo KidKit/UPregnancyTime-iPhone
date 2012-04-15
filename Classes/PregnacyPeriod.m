@@ -15,7 +15,12 @@
 @synthesize begin_date;
 @synthesize due_date;
 
-
+- (void)dealloc
+{
+    [begin_date release];
+    [due_date release];
+    [super dealloc];
+}
 -(NSString *)tableName{
     return @"pregnancy_period";
 }

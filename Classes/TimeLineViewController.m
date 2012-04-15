@@ -20,14 +20,18 @@
 @synthesize dayLabel=_dayLabel;
 @synthesize scrollView=_scrollView;
 @synthesize period = _period;
+@synthesize rootDelegate=_rootDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         [self loadPeriod];
-        UITabBarItem *tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemHistory tag:2] autorelease];
-        self.tabBarItem = tabBarItem;
+        self.navigationItem.title = @"时光隧道";
+        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:_rootDelegate action:@selector(onMenuButtonClicked)] autorelease];
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
@@ -46,7 +50,7 @@
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
     self.dayLabel = [labelViewArray lastObject];
-    _dayLabel.frame = CGRectMake(0, 50, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
+    _dayLabel.frame = CGRectMake(0, 10, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
     [self.view addSubview:_dayLabel];
     
 }
@@ -110,7 +114,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 430;
+    return 416;
 }
 #pragma mark - Table view data source
 
@@ -137,7 +141,7 @@
         for (int i = 1; i<5; i++) {
             NSString *tagImageName = [NSString  stringWithFormat:@"tag_%d",i];
             UIImage *tipsBG = [UIImage imageNamed:tagImageName];
-            UIImageView *tipsBGView = [[[UIImageView alloc] initWithImage:tipsBG] autorelease];
+            UIImageView *tipsBGView = [[UIImageView alloc] initWithImage:tipsBG];
             tipsBGView.frame = CGRectMake(0, 0, tipsBG.size.width, tipsBG.size.height);
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(0, 0, tipsBG.size.width, tipsBG.size.height);
@@ -145,11 +149,13 @@
             button.showsTouchWhenHighlighted = YES;
             button.userInteractionEnabled = YES;
             [button setTitle:@"button_1" forState:UIControlStateNormal];
-            UIView *tipsView = [[[UIView alloc] initWithFrame:CGRectMake(60, 45+(i-1)*tipsBG.size.height, tipsBG.size.width, tipsBG.size.height)] autorelease];
+            UIView *tipsView = [[UIView alloc] initWithFrame:CGRectMake(60, 45+(i-1)*tipsBG.size.height, tipsBG.size.width, tipsBG.size.height)];
             tipsView.backgroundColor = [UIColor clearColor];
             [tipsView addSubview:tipsBGView];
             [tipsView addSubview:button];
             [cell addSubview:tipsView];
+            [tipsBGView release];
+            [tipsView release];
         }
         
     }

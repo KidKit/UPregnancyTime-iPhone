@@ -48,7 +48,7 @@
 									<object class="IBUIImageView" id="966301104">
 										<reference key="NSNextResponder" ref="874764741"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrame">{{30, 0}, {32, 32}}</string>
+										<string key="NSFrame">{{10, 0}, {32, 32}}</string>
 										<reference key="NSSuperview" ref="874764741"/>
 										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -62,7 +62,7 @@
 									<object class="IBUITextField" id="1026095620">
 										<reference key="NSNextResponder" ref="874764741"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{62, 0}, {240, 31}}</string>
+										<string key="NSFrame">{{44, 0}, {260, 31}}</string>
 										<reference key="NSSuperview" ref="874764741"/>
 										<reference key="NSWindow"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -99,7 +99,7 @@
 										</object>
 									</object>
 								</array>
-								<string key="NSFrameSize">{320, 32}</string>
+								<string key="NSFrame">{{0, 10}, {320, 32}}</string>
 								<reference key="NSSuperview" ref="313920473"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -112,7 +112,7 @@
 							<object class="IBUITableView" id="852083022">
 								<reference key="NSNextResponder" ref="313920473"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{0, 32}, {320, 428}}</string>
+								<string key="NSFrame">{{0, 40}, {320, 428}}</string>
 								<reference key="NSSuperview" ref="313920473"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>

@@ -11,6 +11,7 @@
 @synthesize isReturnLabel = _isReturnLabel;
 @synthesize isParent = _isParent;
 @synthesize bgImage = _bgImage;
+@synthesize index=_index;
 
 
 - (void)dealloc {
@@ -70,9 +71,12 @@ static LabelConverter *instance = nil;
 
 + (NSArray *)getLabelsInfoWithLabelKeyArray:(NSArray *)labelKeyArray{
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:labelKeyArray.count];
+    int i=0;
     for(NSString *labelKey in labelKeyArray) {
         LabelInfo *info = [LabelConverter getLabelInfoWithIdentifier:labelKey];
+        info.index = i;
         [result addObject:info];
+        i++;
     }
     return result;
 }

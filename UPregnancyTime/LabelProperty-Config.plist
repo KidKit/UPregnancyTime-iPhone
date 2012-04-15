@@ -5,53 +5,77 @@
 	<key>kTodayTips</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>做日常</string>
+		<string>每日提醒</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
         <key>kLabelBgImage</key>
-        <string>nav_1</string>
+        <string>Calendar</string>
 	</dict>
-    <key>kCheckList</key>
+    <key>kTimeline</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>时光机</string>
+		<string>时光隧道</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
         <key>kLabelBgImage</key>
-        <string>nav_2</string>
+        <string>Clock</string>
 	</dict>
 	<key>kQuestionAndAnswer</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>问答</string>
+		<string>孕期问答</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
         <key>kLabelBgImage</key>
-        <string>nav_3</string>
+        <string>Help</string>
 	</dict>
     <key>kSearchInfo</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>搜索</string>
+		<string>知识搜索</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
         <key>kLabelBgImage</key>
-        <string>nav_4</string>
+        <string>Search</string>
+	</dict>
+    <key>kBookmarks</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>收藏夹</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>Bookmarks</string>
+	</dict>
+    <key>kSettings</key>
+	<dict>
+		<key>kLabelName</key>
+		<string>设置</string>
+		<key>kLabelIsRetractable</key>
+		<false/>
+		<key>kLabelIsParent</key>
+		<true/>
+        <key>kLabelBgImage</key>
+        <string>Settings</string>
 	</dict>
     <key>kSystemDefaultLabels</key>
 	<array>
 		<string>kTodayTips</string>
-		<string>kCheckList</string>
+		<string>kTimeline</string>
 		<string>kQuestionAndAnswer</string>
 		<string>kSearchInfo</string>
+        <string>kBookmarks</string>
+        <string>kSettings</string>
 	</array>
 </dict>
 </plist>

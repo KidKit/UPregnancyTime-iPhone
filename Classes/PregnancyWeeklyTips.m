@@ -11,8 +11,14 @@
 
 @implementation PregnacyWeeklyTips
 
-@dynamic id;
-@dynamic tips_data;
-@dynamic tips_weekly;
+@synthesize id;
+@synthesize tips_data;
+@synthesize tips_weekly;
+
+- (void)dealloc
+{
+    [tips_data release];
+    [super dealloc];
+}
 
 @end

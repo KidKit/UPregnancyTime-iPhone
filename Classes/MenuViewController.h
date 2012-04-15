@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "QuartzCore/QuartzCore.h"
+#import "LabelConverter.h"
+#import "RootViewDelegate.h"
 
 @interface MenuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,retain)NSArray *labelInfos;
 @property (nonatomic,retain)IBOutlet UITableView *tableView;
+@property (nonatomic,assign)id<RootViewDelegate>rootDelegate;
 @end

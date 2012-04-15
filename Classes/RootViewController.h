@@ -9,24 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "QuartzCore/QuartzCore.h"
 #import "LabelConverter.h"
+#import "UPTContentView.h"
 #import "HomeViewController.h"
 #import "TimeLineViewController.h"
 #import "QAViewController.h"
 #import "SearchViewController.h"
 #import "MenuViewController.h"
+#import "RootViewDelegate.h"
 
-@interface RootViewController : UIViewController<UIScrollViewDelegate>
+
+
+@interface RootViewController : UIViewController<UIScrollViewDelegate,RootViewDelegate>
 {
-    UINavigationController *_homeController;
-    UINavigationController *_timeLineController;
-    UINavigationController *_qaController;
-    UINavigationController *_searchController;
     
 }
-@property (nonatomic,retain)UIViewController *currentViewController;
-@property (nonatomic,retain)UIViewController *menuController;
-@property (nonatomic,retain)IBOutlet UIView *contentView;
+@property (nonatomic,assign)NSString *currentViewControllerKey;
+@property (nonatomic,retain)MenuViewController *menuController;
+@property (nonatomic,retain)IBOutlet UPTContentView *contentView;
+@property (nonatomic,retain)NSMutableDictionary *functionControllers;
 
--(IBAction)didNavLabelClick:(id)sender;
 
 @end
+
+

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewDelegate.h"
 
 @interface SearchViewController : UIViewController
 
+@property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 @end

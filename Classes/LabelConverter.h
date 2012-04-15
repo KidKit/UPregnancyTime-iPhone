@@ -10,13 +10,13 @@
 
 #define kTodayTips          @"kTodayTips"
 
-#define kCheckList         @"kCheckList"
+#define kTimeline         @"kTimeline"
 #define kTodayTipsArticle    @"kCheckArticleList"
 #define kTodayTipsProposal @"kCheckProposalList"
-
 #define kQuestionAndAnswer       @"kQuestionAndAnswer"
-
 #define kSearchInfo        @"kSearchInfo"
+#define kBookmarks        @"kBookmarks"
+#define kSettings        @"kSettings"
 
 #define kSystemDefaultLabels    @"kSystemDefaultLabels"
 #define kLabelName              @"kLabelName"
@@ -29,15 +29,7 @@
 #define kParentRenrenUser       @"kParentRenrenUser"
 
 @interface LabelInfo : NSObject {
-@private
-    NSString *_identifier;
-    NSString *_labelName;
-    BOOL _isRemovable;
-    BOOL _isSelected;
-    BOOL _isReturnLabel;
-    BOOL _isParent;
-    
-    UIImage *_bgImage;
+
 }
 
 @property (nonatomic, copy) NSString *identifier;
@@ -48,6 +40,7 @@
 @property (nonatomic) BOOL isReturnLabel;
 @property (nonatomic) BOOL isParent;
 @property (nonatomic, retain) UIImage *bgImage;
+@property (atomic) int index;
 
 
 

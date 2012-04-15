@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OverlayViewController.h"
+#import "RootViewDelegate.h"
 
 @interface QAViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,OverlayViewControllerDelegate>
 
@@ -16,4 +17,5 @@
 @property (nonatomic,retain)IBOutlet UITableView *resultView;
 @property (nonatomic,retain)IBOutlet UITextField *searchTextField;
 @property (nonatomic,retain)OverlayViewController *overlay;
+@property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 @end
