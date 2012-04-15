@@ -25,11 +25,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.navigationItem.title = @"孕期问答";
-        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:_rootDelegate action:@selector(onMenuButtonClicked)] autorelease];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
@@ -45,7 +40,7 @@
     _resultView.backgroundColor = [UIColor clearColor];
     _searchView.backgroundColor = [UIColor clearColor];
     _mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
-    self.view.backgroundColor = [UIColor clearColor];;
+    self.view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidUnload
@@ -56,6 +51,7 @@
     self.mainView = nil;
     self.searchView = nil;
     self.resultView = nil;
+    self.searchTextField = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

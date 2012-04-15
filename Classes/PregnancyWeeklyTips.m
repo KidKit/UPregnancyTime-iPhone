@@ -20,5 +20,11 @@
     [tips_data release];
     [super dealloc];
 }
+-(NSString *)tableName{
+    return @"pregnancy_weekly_tips";
+}
 
+-(id)uniqueIdPropertyName{
+    return @"id";
+}
 @end

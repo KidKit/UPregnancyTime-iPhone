@@ -55,11 +55,6 @@
         [self loadPeriod];
         [self loadTipsTypes];
         [self loadTips];
-        self.navigationItem.title = @"每日提醒";
-        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:_rootDelegate action:@selector(onMenuButtonClicked)] autorelease];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
@@ -74,8 +69,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _tipsTableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
-    NSLog(@"_tipsTableView frame:%f,%f,%f,%f",_tipsTableView.frame.origin.x,_tipsTableView.frame.origin.y,_tipsTableView.frame.size.width,_tipsTableView.frame.size.height);
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
+    _tipsTableView.backgroundColor =  [UIColor clearColor];
+    
     [self loadTipsViews];
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
@@ -109,7 +105,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 -(void)loadPeriod{
-    self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnacyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
+    self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnancyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
     //[[[NSDate date] dateByAddingTimeInterval:(24*60*60*220)] timeIntervalSince1970]
     //NSLog(@"_period.begin_date:%@",_period.begin_date);
 }

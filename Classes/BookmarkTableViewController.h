@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewDelegate.h"
+#import "DatabaseAccess.h"
+#import "PregnancyBookmark.h"
 
-@interface BookmarkTableViewController : UIViewController
+@interface BookmarkTableViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
+@property (nonatomic,retain)IBOutlet UIView *mainView;
+@property (nonatomic,retain)IBOutlet UIView *searchView;
+@property (nonatomic,retain)IBOutlet UITableView *resultView;
+@property (nonatomic,retain)IBOutlet UITextField *searchTextField;
+@property (nonatomic,assign)id<RootViewDelegate>rootDelegate;
+@property (nonatomic,retain)NSArray *bookmarks;
 @end

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Entity.h"
 
-
-@interface PregnacyWeeklyTips : NSObject
+@interface PregnacyWeeklyTips : NSObject<Entity>
 
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * tips_data;

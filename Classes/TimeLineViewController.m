@@ -27,11 +27,6 @@
     if (self) {
         // Custom initialization
         [self loadPeriod];
-        self.navigationItem.title = @"时光隧道";
-        UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:_rootDelegate action:@selector(onMenuButtonClicked)] autorelease];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        self.navigationItem.leftBarButtonItem = leftButton;
     }
     return self;
 }
@@ -71,7 +66,7 @@
 #pragma mark - load data from db
 
 -(void)loadPeriod{
-    self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnacyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
+    self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnancyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
     //[[[NSDate date] dateByAddingTimeInterval:(24*60*60*220)] timeIntervalSince1970]
     //NSLog(@"_period.begin_date:%@",_period.begin_date);
 }

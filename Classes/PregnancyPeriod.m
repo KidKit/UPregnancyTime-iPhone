@@ -6,10 +6,10 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "PregnacyPeriod.h"
+#import "PregnancyPeriod.h"
 
 
-@implementation PregnacyPeriod
+@implementation PregnancyPeriod
 
 @synthesize  id;
 @synthesize begin_date;

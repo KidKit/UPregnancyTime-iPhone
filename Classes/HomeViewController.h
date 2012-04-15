@@ -11,7 +11,7 @@
 #import "DatabaseAccess.h"
 #import "PregnancyDaliyTips.h"
 #import "PregnancyDaliyTipsType.h"
-#import "PregnacyPeriod.h"
+#import "PregnancyPeriod.h"
 #import "TipsViewController.h"
 #import "AHomeView.h"
 #import "CalendarView.h"
@@ -27,7 +27,7 @@
 @property (nonatomic,readwrite)CGPoint startPoint;
 @property (nonatomic,retain) NSDate *currentDate;
 @property (nonatomic,retain)CalendarView *dayLabel;
-@property (nonatomic,retain)PregnacyPeriod *period;
+@property (nonatomic,retain)PregnancyPeriod *period;
 @property (nonatomic,retain) NSMutableArray *tipsViews;
 @property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 

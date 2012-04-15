@@ -17,7 +17,7 @@
     CGPoint touchBeganPoint;
 }
 -(void)performViewTransition:(UIViewController *)subViewController;
--(void)switchToControllerWithKey:(NSString *)controllerKey;
+-(void)switchToControllerWithLabelInfo:(LabelInfo *)labelInfo;
 -(void)moveContentViewToRight;
 -(void)moveContentViewToOrigin;
 -(void)dismissContentView;
@@ -65,18 +65,8 @@
     
     //显示内容
     //_contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
-    UINavigationController *_homeController = [_functionControllers valueForKey:kTodayTips];
-    if(_homeController==nil){
-        HomeViewController *hvc = [[[HomeViewController alloc] init] autorelease];
-        hvc.rootDelegate = self;
-        CGRect frame = CGRectMake(0, 0, hvc.view.frame.size.width, hvc.view.frame.size.height);
-        _homeController = [[[UINavigationController alloc] initWithRootViewController:hvc] autorelease];
-        _homeController.navigationBarHidden = NO;
-        _homeController.view.frame = frame;
-        [_contentView addSubview:_homeController.view];
-        [_functionControllers setValue:_homeController forKey:kTodayTips];
-    }
-    self.currentViewControllerKey = kTodayTips;
+    LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:kTodayTips];
+    [self switchToControllerWithLabelInfo:labelInfo];
     
     //设置背景
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"root_bg"]];
@@ -104,7 +94,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)switchToControllerWithKey:(NSString *)controllerKey{
+-(void)switchToControllerWithLabelInfo:(LabelInfo *)labelInfo{
+    NSString *controllerKey = labelInfo.identifier;
+    NSString *titleName = labelInfo.labelName;
     UINavigationController *controller = [_functionControllers valueForKey:controllerKey];
     if(controller==nil){
         UIViewController *baseController = nil;
@@ -120,10 +112,21 @@
         if ([controllerKey isEqualToString:kSearchInfo]) {
             baseController = [[[SearchViewController alloc] init] autorelease];
         }
+        if ([controllerKey isEqualToString:kBookmarks]) {
+            baseController = [[[BookmarkTableViewController alloc] init] autorelease];
+        }
+        if ([controllerKey isEqualToString:kSettings]) {
+            baseController = [[[SettingViewController alloc] init] autorelease];
+        }
         if(baseController){
             if ([baseController respondsToSelector:@selector(setRootDelegate:)]) {
                 [baseController performSelector:@selector(setRootDelegate:) withObject:self];
             }
+            baseController.navigationItem.title = titleName;
+            UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onMenuButtonClicked)] autorelease];
+            [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+            [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+            baseController.navigationItem.leftBarButtonItem = leftButton;
             CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
             controller = [[[UINavigationController alloc] initWithRootViewController:baseController] autorelease];
             controller.navigationBarHidden = NO;
@@ -190,7 +193,7 @@
     
 }
 -(void)onMenuItemClickedWithInfo:(LabelInfo *)labelInfo{
-    [self switchToControllerWithKey:labelInfo.identifier];
+    [self switchToControllerWithLabelInfo:labelInfo];
 }
 
 #pragma mark - UISwipeGestureRecognizer

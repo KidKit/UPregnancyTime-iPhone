@@ -10,13 +10,13 @@
 #import "QuartzCore/QuartzCore.h"
 #import "DatabaseAccess.h"
 #import "CalendarView.h"
-#import "PregnacyPeriod.h"
+#import "PregnancyPeriod.h"
 #import "RootViewDelegate.h"
 
 @interface TimeLineViewController : UIViewController<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic,retain)IBOutlet UITableView *scrollView;
 @property (nonatomic,retain)CalendarView *dayLabel;
-@property (nonatomic,retain)PregnacyPeriod *period;
+@property (nonatomic,retain)PregnancyPeriod *period;
 @property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 @end

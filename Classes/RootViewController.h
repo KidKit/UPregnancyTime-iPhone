@@ -14,6 +14,8 @@
 #import "TimeLineViewController.h"
 #import "QAViewController.h"
 #import "SearchViewController.h"
+#import "BookmarkTableViewController.h"
+#import "SettingViewController.h"
 #import "MenuViewController.h"
 #import "RootViewDelegate.h"
 

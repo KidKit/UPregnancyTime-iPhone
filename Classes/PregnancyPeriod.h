@@ -10,7 +10,7 @@
 #import "Entity.h"
 
 
-@interface PregnacyPeriod : NSObject<Entity>
+@interface PregnancyPeriod : NSObject<Entity>
 
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSDate * begin_date;
