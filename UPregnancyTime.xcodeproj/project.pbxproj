@@ -306,7 +306,7 @@
 		DFFDB11E15317AE900FF6A47 /* PregnancyDaliyTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyDaliyTips.m; sourceTree = "<group>"; };
 		DFFDB11F15317AE900FF6A47 /* PregnancyDaliyTipsType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyDaliyTipsType.h; sourceTree = "<group>"; };
 		DFFDB12015317AE900FF6A47 /* PregnancyDaliyTipsType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyDaliyTipsType.m; sourceTree = "<group>"; };
-		DFFDB12315317B1600FF6A47 /* PregnancyPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PregnancyPeriod.h; sourceTree = "<group>"; };
+		DFFDB12315317B1600FF6A47 /* PregnancyPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyPeriod.h; sourceTree = "<group>"; };
 		DFFDB12415317B1600FF6A47 /* PregnancyPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyPeriod.m; sourceTree = "<group>"; };
 		DFFDB12515317B1600FF6A47 /* PregnancyWeeklyTips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PregnancyWeeklyTips.h; sourceTree = "<group>"; };
 		DFFDB12615317B1600FF6A47 /* PregnancyWeeklyTips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PregnancyWeeklyTips.m; sourceTree = "<group>"; };
@@ -440,19 +440,19 @@
 		DF81425F153078B000284D86 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DFFDB11815317ABB00FF6A47 /* DataModel */,
+				DF814261153078C000284D86 /* Category */,
+				DF8142661530790A00284D86 /* Fmdb */,
+				DFF832A9153951CA005AA2C9 /* Gesture */,
 				DF1A566D153AA4C9005FB635 /* Setting */,
 				DF1A5666153AA161005FB635 /* Bookmark */,
-				DFF832A9153951CA005AA2C9 /* Gesture */,
 				DF81603A153823F600AE17F9 /* Menu */,
 				DF815FD21537D17600AE17F9 /* Overlay */,
 				DF125FD515354D0800459D5D /* Search */,
 				DF125FD415354CF800459D5D /* QA */,
 				DF125FCE15354CC600459D5D /* TimeLine */,
-				DFFDB11815317ABB00FF6A47 /* DataModel */,
 				DFFDB10615313F6300FF6A47 /* Root */,
 				DF81427E153079CE00284D86 /* Home */,
-				DF8142661530790A00284D86 /* Fmdb */,
-				DF814261153078C000284D86 /* Category */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
