@@ -9,16 +9,19 @@
 #import "RootViewController.h"
 #define NAV_BASE_ORIGIN_X 18
 #define NAV_BASE_ORIGIN_Y -54
-#define MENU_VIEW_WIDTH 270
-#define kTriggerOffSet 120
+#define MENU_VIEW_WIDTH 240
+#define kTriggerLeftOffSet 120
+#define kTriggerRightOffSet 50
+#define TIMELINE_VIEW_WIDTH 50
 
 @interface RootViewController ()
 {
-    CGPoint touchBeganPoint;
+    CGPoint touchBeganContentFramePoint;
 }
 -(void)performViewTransition:(UIViewController *)subViewController;
 -(void)switchToControllerWithLabelInfo:(LabelInfo *)labelInfo;
 -(void)moveContentViewToRight;
+-(void)moveContentViewToLeft;
 -(void)moveContentViewToOrigin;
 -(void)dismissContentView;
 - (void)handlePanRecognizer:(UIPanGestureRecognizer*)recognizer;
@@ -28,6 +31,7 @@
 @synthesize contentView = _contentView;
 @synthesize currentViewControllerKey=_currentViewControllerKey;
 @synthesize menuController = _menuController;
+@synthesize timelineController = _timelineController;
 @synthesize functionControllers = _functionControllers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,6 +45,7 @@
 }
 - (void)dealloc
 {
+    [_timelineController release];
     [_menuController release];
     [_functionControllers release];
     [_currentViewControllerKey release];
@@ -53,13 +58,17 @@
     //菜单view
     self.menuController = [[[MenuViewController alloc] init] autorelease];
     _menuController.rootDelegate = self;
-    
     [self.view insertSubview:_menuController.view belowSubview:_contentView];
+    
+    //时间轴
+    self.timelineController = [[[TimeLineViewController alloc] init] autorelease];
+    _timelineController.rootDelegate = self;
+    _timelineController.view.frame = CGRectMake(self.view.frame.size.width-TIMELINE_VIEW_WIDTH, 0, TIMELINE_VIEW_WIDTH, _timelineController.view.frame.size.height);
+    [self.view insertSubview:_timelineController.view belowSubview:_contentView];
  
+    //设置导航栏
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
-    
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     
@@ -69,7 +78,7 @@
     [self switchToControllerWithLabelInfo:labelInfo];
     
     //设置背景
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"root_bg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu-background"]];
     
     //响应触摸事件
     UIPanGestureRecognizer* panRecognizer = [[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanRecognizer:)] autorelease];
@@ -103,14 +112,8 @@
         if ([controllerKey isEqualToString:kTodayTips]) {
             baseController = [[[HomeViewController alloc] init] autorelease];
         }
-        if ([controllerKey isEqualToString:kTimeline]) {
-            baseController = [[[TimeLineViewController alloc] init] autorelease];
-        }
         if ([controllerKey isEqualToString:kQuestionAndAnswer]) {
             baseController = [[[QAViewController alloc] init] autorelease];
-        }
-        if ([controllerKey isEqualToString:kSearchInfo]) {
-            baseController = [[[SearchViewController alloc] init] autorelease];
         }
         if ([controllerKey isEqualToString:kBookmarks]) {
             baseController = [[[BookmarkTableViewController alloc] init] autorelease];
@@ -166,6 +169,12 @@
         _contentView.frame = CGRectMake(MENU_VIEW_WIDTH, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
     } ];
 }
+-(void)moveContentViewToLeft{
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        _contentView.frame = CGRectMake(-TIMELINE_VIEW_WIDTH, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
+    } ];
+}
 -(void)moveContentViewToOrigin{
     [UIView animateWithDuration:0.2 animations:^{
         _contentView.frame = CGRectMake(0, _contentView.frame.origin.y, _contentView.frame.size.width, _contentView.frame.size.height);
@@ -202,29 +211,43 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         //NSLog(@"testRecognizer begin:%@",recognizer);
-        if(_contentView.frame.origin.x!=0){
-            [self moveContentViewToOrigin];
-        }
+        touchBeganContentFramePoint = _contentView.frame.origin;
     }
-    else if (recognizer.state == UIGestureRecognizerStateChanged) {
-        if(_contentView.frame.origin.x>=0){
-            CGFloat xOffSet = [recognizer translationInView:[[UIApplication sharedApplication] keyWindow]].x;                
-            _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
+    else if (recognizer.state == UIGestureRecognizerStateChanged&&touchBeganContentFramePoint.x==0) {
+        CGFloat xOffSet = [recognizer translationInView:[[UIApplication sharedApplication] keyWindow]].x;
+        if(xOffSet>0){
+            if(_contentView.frame.origin.x>=0&&_contentView.frame.origin.x<=MENU_VIEW_WIDTH){
+                _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
+            } 
+        }else {
+            if(_contentView.frame.origin.x<=0&&_contentView.frame.origin.x>-TIMELINE_VIEW_WIDTH){
+                _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
+            }
         }
     }
     else if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (_contentView.frame.origin.x < -kTriggerOffSet){
-            //[self moveToLeftSide];
-            [self moveContentViewToOrigin];
-        // animate to right side
-        }else if (_contentView.frame.origin.x > kTriggerOffSet){
-            //[self moveToRightSide];
-            [self moveContentViewToRight];
-        // reset
-        }else{
-            [self moveContentViewToOrigin];
+        CGFloat xOffSet = [recognizer translationInView:[[UIApplication sharedApplication] keyWindow]].x;
+        if(touchBeganContentFramePoint.x!=0){
+            if(touchBeganContentFramePoint.x*xOffSet<0){
+                [self moveContentViewToOrigin];
+            }
+        }else {
+            float offset = _contentView.frame.origin.x;
+            if (offset<0) {
+                if (_contentView.frame.origin.x < -kTriggerRightOffSet){
+                    [self moveContentViewToLeft];
+                }else if(_contentView.frame.origin.x > -kTriggerRightOffSet){
+                    [self moveContentViewToOrigin];
+                } 
+            }else {
+                if (_contentView.frame.origin.x > kTriggerLeftOffSet){
+                    [self moveContentViewToRight];
+                }else{
+                    [self moveContentViewToOrigin];
+                }
+            }
         }
-
+        
     }
 }
 @end

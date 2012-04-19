@@ -13,10 +13,10 @@
 #import "PregnancyPeriod.h"
 #import "RootViewDelegate.h"
 
-@interface TimeLineViewController : UIViewController<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface TimeLineViewController : UIViewController<UIScrollViewDelegate>
 
-@property (nonatomic,retain)IBOutlet UITableView *scrollView;
-@property (nonatomic,retain)CalendarView *dayLabel;
+@property (nonatomic,retain)IBOutlet UIScrollView *scrollView;
+@property (nonatomic,retain)IBOutlet UIView *pointerView;
 @property (nonatomic,retain)PregnancyPeriod *period;
 @property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 @end

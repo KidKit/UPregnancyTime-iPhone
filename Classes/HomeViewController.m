@@ -76,7 +76,7 @@
     //加载日期标签
     NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
     self.dayLabel = [labelViewArray lastObject];
-    _dayLabel.frame = CGRectMake(0, 10, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
+    _dayLabel.frame = CGRectMake(self.view.frame.size.width-_dayLabel.frame.size.width, 0, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
     [self updateDayLabel];
     [self.view addSubview:_dayLabel];
     [self.view bringSubviewToFront:_dayLabel];

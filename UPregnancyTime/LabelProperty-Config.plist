@@ -71,9 +71,7 @@
     <key>kSystemDefaultLabels</key>
 	<array>
 		<string>kTodayTips</string>
-		<string>kTimeline</string>
 		<string>kQuestionAndAnswer</string>
-		<string>kSearchInfo</string>
         <string>kBookmarks</string>
         <string>kSettings</string>
 	</array>

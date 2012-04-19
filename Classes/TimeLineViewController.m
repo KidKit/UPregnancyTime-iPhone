@@ -17,8 +17,8 @@
 @end
 
 @implementation TimeLineViewController
-@synthesize dayLabel=_dayLabel;
 @synthesize scrollView=_scrollView;
+@synthesize pointerView=_pointerView;
 @synthesize period = _period;
 @synthesize rootDelegate=_rootDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,13 +40,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
-    _scrollView.backgroundColor =[UIColor clearColor];
-    //加载日期标签
-    NSArray *labelViewArray = [[NSBundle mainBundle] loadNibNamed:@"CalendarView" owner:nil options:nil];
-    self.dayLabel = [labelViewArray lastObject];
-    _dayLabel.frame = CGRectMake(0, 10, _dayLabel.frame.size.width, _dayLabel.frame.size.height);
-    [self.view addSubview:_dayLabel];
+    self.view.backgroundColor = [UIColor clearColor];
+    UIImage *calibrationBG = [UIImage imageNamed:@"kedu"];
+    float contentHeight = calibrationBG.size.height*40;
+    UIView *calibration = [[UIView alloc] initWithFrame:CGRectMake(18, 0, 32, contentHeight)]; 
+    calibration.backgroundColor = [UIColor colorWithPatternImage:calibrationBG];
+    _scrollView.contentSize = CGSizeMake(50, contentHeight);
+    [_scrollView addSubview:calibration];
+    [calibration release];
+    _pointerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pointer"]];
+    //[self.view bringSubviewToFront:_pointerView];
     
 }
 
@@ -56,7 +59,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     self.scrollView = nil;
-    self.dayLabel = nil;
+    self.pointerView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -75,13 +78,6 @@
 
 //The TimeScroller needs to know what's happening with the UITableView (UIScrollView)
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSArray *visibleRows = [_scrollView indexPathsForVisibleRows];
-    if([visibleRows count]>0){
-        NSIndexPath *currentIndex = [visibleRows objectAtIndex:0];
-        int daliy = currentIndex.section*7+currentIndex.row+1;
-        NSDate *currentDate = [_period.begin_date dateByAddingTimeInterval:(24*60*60)*daliy];
-        [_dayLabel populateWithDate:currentDate sequenceInWeek:currentIndex.section+1 sequenceInDate:daliy];
-    }
     
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -102,71 +98,5 @@
         
     }
     
-}
-#pragma UITableViewDelegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 416;
-}
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 40;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 7;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"TimeLineCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)  
-    {  
-        // Create a cell to display an ingredient.  
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        for (int i = 1; i<5; i++) {
-            NSString *tagImageName = [NSString  stringWithFormat:@"tag_%d",i];
-            UIImage *tipsBG = [UIImage imageNamed:tagImageName];
-            UIImageView *tipsBGView = [[UIImageView alloc] initWithImage:tipsBG];
-            tipsBGView.frame = CGRectMake(0, 0, tipsBG.size.width, tipsBG.size.height);
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(0, 0, tipsBG.size.width, tipsBG.size.height);
-            button.backgroundColor = [UIColor clearColor];
-            button.showsTouchWhenHighlighted = YES;
-            button.userInteractionEnabled = YES;
-            [button setTitle:@"button_1" forState:UIControlStateNormal];
-            UIView *tipsView = [[UIView alloc] initWithFrame:CGRectMake(60, 45+(i-1)*tipsBG.size.height, tipsBG.size.width, tipsBG.size.height)];
-            tipsView.backgroundColor = [UIColor clearColor];
-            [tipsView addSubview:tipsBGView];
-            [tipsView addSubview:button];
-            [cell addSubview:tipsView];
-            [tipsBGView release];
-            [tipsView release];
-        }
-        
-    }
-    return cell;
-}
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return nil;
-}
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:40];
-    for(int i=0;i<40;i++){
-        [array addObject:[NSString stringWithFormat:@"%d",i+1 ]]; 
-    }
-    return array;
-}
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [title integerValue];
 }
 @end

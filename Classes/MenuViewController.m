@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    _tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu-background"]];
+    _tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidUnload

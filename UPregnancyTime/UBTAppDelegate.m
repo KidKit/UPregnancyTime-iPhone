@@ -7,6 +7,7 @@
 //
 
 #import "UBTAppDelegate.h"
+#import "NotificationCenter.h"
 
 @implementation UBTAppDelegate
 
@@ -20,6 +21,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NotificationCenter *nc = [[[NotificationCenter alloc] init] autorelease];
+        [application cancelAllLocalNotifications];
+        //[application scheduleLocalNotification:[nc populateNotificationWithEntity:nil]]; 
+    });
+    
+    
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     RootViewController *rootController = [[[RootViewController alloc] init] autorelease];
@@ -28,6 +37,9 @@
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
+    NSLog(@"didReceiveLocalNotification");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

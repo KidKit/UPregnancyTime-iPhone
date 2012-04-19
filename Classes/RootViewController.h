@@ -27,6 +27,7 @@
 }
 @property (nonatomic,assign)NSString *currentViewControllerKey;
 @property (nonatomic,retain)MenuViewController *menuController;
+@property (nonatomic,retain)TimeLineViewController *timelineController;
 @property (nonatomic,retain)IBOutlet UPTContentView *contentView;
 @property (nonatomic,retain)NSMutableDictionary *functionControllers;
 
