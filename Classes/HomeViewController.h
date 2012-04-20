@@ -34,5 +34,5 @@
 @property (nonatomic,retain)IBOutlet UITableView *tipsTableView;
 
 
-
+-(void)gotoTipsViewByDay:(NSNumber *)day;
 @end

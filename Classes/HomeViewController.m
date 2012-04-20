@@ -188,7 +188,7 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"TipsViewCell";
+    NSString *CellIdentifier = [NSString stringWithFormat:@"TipsViewCell-%@",_currentDate];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)  
     {  
@@ -201,7 +201,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 416.0f;
+    return 460.0f;
 }
 
 #pragma mark - UIView override
@@ -210,4 +210,12 @@
     return NO;
 }
 
+#pragma mark -transport
+-(void)gotoTipsViewByDay:(NSNumber *)day{
+    self.currentDate = [_period.begin_date dateByAddingTimeInterval:(24*60*60)*[day intValue]];
+    [self loadTips];
+    [self loadTipsViews];
+    [self updateDayLabel];
+    [_tipsTableView reloadData];
+}
 @end

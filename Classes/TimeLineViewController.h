@@ -19,4 +19,5 @@
 @property (nonatomic,retain)IBOutlet UIView *pointerView;
 @property (nonatomic,retain)PregnancyPeriod *period;
 @property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
+@property (nonatomic,retain)UIView *calibrationView;
 @end

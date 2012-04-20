@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #define NAV_BASE_ORIGIN_X 18
 #define NAV_BASE_ORIGIN_Y -54
-#define MENU_VIEW_WIDTH 240
+#define MENU_VIEW_WIDTH 200
 #define kTriggerLeftOffSet 120
 #define kTriggerRightOffSet 50
 #define TIMELINE_VIEW_WIDTH 50
@@ -17,6 +17,7 @@
 @interface RootViewController ()
 {
     CGPoint touchBeganContentFramePoint;
+    BOOL leftMoveable;
 }
 -(void)performViewTransition:(UIViewController *)subViewController;
 -(void)switchToControllerWithLabelInfo:(LabelInfo *)labelInfo;
@@ -141,6 +142,11 @@
     if (controller) {
         [self performViewTransition:controller];
         self.currentViewControllerKey = controllerKey;
+        if ([controllerKey isEqualToString:kTodayTips]) {
+            leftMoveable = YES;
+        }else {
+            leftMoveable = NO;
+        }
     }
 }
 
@@ -205,6 +211,17 @@
     [self switchToControllerWithLabelInfo:labelInfo];
 }
 
+-(void)gotoTipsViewByDay:(int)day{
+    if ([kTodayTips isEqualToString:_currentViewControllerKey]) {
+        UINavigationController *navController = [_functionControllers objectForKey:kTodayTips];
+        UIViewController *homeViewController = navController.topViewController;
+        if ([homeViewController respondsToSelector:@selector(gotoTipsViewByDay:)]) {
+            [homeViewController performSelector:@selector(gotoTipsViewByDay:) withObject:[NSNumber numberWithInt:day]];
+        }
+        
+    }
+}
+
 #pragma mark - UISwipeGestureRecognizer
 
 - (void)handlePanRecognizer:(UIPanGestureRecognizer*)recognizer{
@@ -219,7 +236,7 @@
             if(_contentView.frame.origin.x>=0&&_contentView.frame.origin.x<=MENU_VIEW_WIDTH){
                 _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
             } 
-        }else {
+        }else if(leftMoveable){
             if(_contentView.frame.origin.x<=0&&_contentView.frame.origin.x>-TIMELINE_VIEW_WIDTH){
                 _contentView.frame = CGRectMake(xOffSet,_contentView.frame.origin.y,_contentView.frame.size.width, _contentView.frame.size.height);
             }
@@ -233,7 +250,7 @@
             }
         }else {
             float offset = _contentView.frame.origin.x;
-            if (offset<0) {
+            if (offset<0&&leftMoveable) {
                 if (_contentView.frame.origin.x < -kTriggerRightOffSet){
                     [self moveContentViewToLeft];
                 }else if(_contentView.frame.origin.x > -kTriggerRightOffSet){

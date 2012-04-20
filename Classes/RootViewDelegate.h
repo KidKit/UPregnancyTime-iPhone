@@ -12,4 +12,7 @@
 @protocol RootViewDelegate <NSObject>
 -(void)onMenuButtonClicked;
 -(void)onMenuItemClickedWithInfo:(LabelInfo *)labelInfo;
+
+@optional
+-(void)gotoTipsViewByDay:(int)day;
 @end
