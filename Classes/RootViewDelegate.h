@@ -10,6 +10,7 @@
 #import "LabelConverter.h"
 
 @protocol RootViewDelegate <NSObject>
+-(void)onTimeLineButtonClicked;
 -(void)onMenuButtonClicked;
 -(void)onMenuItemClickedWithInfo:(LabelInfo *)labelInfo;
 

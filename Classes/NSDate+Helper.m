@@ -92,10 +92,57 @@ static NSDateFormatter *displayFormatter;
 	}
 	return text;
 }
-
+- (NSUInteger)day{
+    NSDateComponents *weekdayComponents = [calendar components:(NSDayCalendarUnit) fromDate:self];
+	return [weekdayComponents day];
+}
 - (NSUInteger)weekday {
     NSDateComponents *weekdayComponents = [calendar components:(NSWeekdayCalendarUnit) fromDate:self];
 	return [weekdayComponents weekday];
+}
+-(NSString *)weekdayCN{
+    NSUInteger weekday = [self weekday];
+    NSString *weekdayCN = @"";
+    switch (weekday) {
+        case 1:
+        {
+            weekdayCN = @"星期天";
+            break;
+        }   
+        case 2:
+        {
+            weekdayCN = @"星期一";
+            break;
+        }
+        case 3:
+        {
+            weekdayCN = @"星期二";
+            break;
+        }
+        case 4:
+        {
+            weekdayCN = @"星期三";
+            break;
+        }
+        case 5:
+        {
+            weekdayCN = @"星期四";
+            break;
+        }
+        case 6:
+        {
+            weekdayCN = @"星期五";
+            break;
+        }
+        case 7:
+        {
+            weekdayCN = @"星期六";
+            break;
+        }
+        default:
+            break;
+    }
+    return weekdayCN;
 }
 
 + (NSDate *)dateFromString:(NSString *)string {
@@ -265,7 +312,7 @@ static NSDateFormatter *displayFormatter;
 }
 
 + (NSString *)dateFormatStringCN {
-	return @"yyyy年MM月dd日";
+	return @"yy年M月d日";
 }
 
 + (NSString *)dateFormatString {

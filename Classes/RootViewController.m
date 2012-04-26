@@ -67,10 +67,7 @@
     _timelineController.view.frame = CGRectMake(self.view.frame.size.width-TIMELINE_VIEW_WIDTH, 0, TIMELINE_VIEW_WIDTH, _timelineController.view.frame.size.height);
     [self.view insertSubview:_timelineController.view belowSubview:_contentView];
  
-    //设置导航栏
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    
     
     
     //显示内容
@@ -111,7 +108,7 @@
     if(controller==nil){
         UIViewController *baseController = nil;
         if ([controllerKey isEqualToString:kTodayTips]) {
-            baseController = [[[HomeViewController alloc] init] autorelease];
+            baseController = [[[DaliyTipsViewController alloc] init] autorelease];
         }
         if ([controllerKey isEqualToString:kQuestionAndAnswer]) {
             baseController = [[[QAViewController alloc] init] autorelease];
@@ -131,6 +128,18 @@
             [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
             [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
             baseController.navigationItem.leftBarButtonItem = leftButton;
+            //首页才能往左滑动
+            if ([controllerKey isEqualToString:kTodayTips]) {
+                leftMoveable = YES;
+                UIBarButtonItem *rightButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-timeline-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onTimeLineButtonClicked)] autorelease];
+                [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+                [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+                baseController.navigationItem.rightBarButtonItem = rightButton;
+            }else {
+                leftMoveable = NO;
+            }
+            
+            
             CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
             controller = [[[UINavigationController alloc] initWithRootViewController:baseController] autorelease];
             controller.navigationBarHidden = NO;
@@ -142,11 +151,7 @@
     if (controller) {
         [self performViewTransition:controller];
         self.currentViewControllerKey = controllerKey;
-        if ([controllerKey isEqualToString:kTodayTips]) {
-            leftMoveable = YES;
-        }else {
-            leftMoveable = NO;
-        }
+        
     }
 }
 
@@ -207,6 +212,13 @@
     }
     
 }
+-(void)onTimeLineButtonClicked{
+    if(_contentView.frame.origin.x!=0){
+        [self moveContentViewToOrigin];
+    }else {
+        [self moveContentViewToLeft];
+    }
+}
 -(void)onMenuItemClickedWithInfo:(LabelInfo *)labelInfo{
     [self switchToControllerWithLabelInfo:labelInfo];
 }
@@ -214,9 +226,9 @@
 -(void)gotoTipsViewByDay:(int)day{
     if ([kTodayTips isEqualToString:_currentViewControllerKey]) {
         UINavigationController *navController = [_functionControllers objectForKey:kTodayTips];
-        UIViewController *homeViewController = navController.topViewController;
-        if ([homeViewController respondsToSelector:@selector(gotoTipsViewByDay:)]) {
-            [homeViewController performSelector:@selector(gotoTipsViewByDay:) withObject:[NSNumber numberWithInt:day]];
+        UIViewController *tipsViewController = navController.topViewController;
+        if ([tipsViewController respondsToSelector:@selector(gotoTipsViewByDay:)]) {
+            [tipsViewController performSelector:@selector(gotoTipsViewByDay:) withObject:[NSNumber numberWithInt:day]];
         }
         
     }

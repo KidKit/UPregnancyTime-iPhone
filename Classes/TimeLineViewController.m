@@ -136,4 +136,5 @@
         [_rootDelegate gotoTipsViewByDay:targetDay];
     }
 }
+
 @end

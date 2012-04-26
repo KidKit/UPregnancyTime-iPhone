@@ -37,6 +37,8 @@
 - (NSString *)stringDaysAgo;
 - (NSString *)stringDaysAgoAgainstMidnight:(BOOL)flag;
 - (NSUInteger)weekday;
+- (NSString *)weekdayCN;
+- (NSUInteger)day;
 
 + (NSDate *)dateFromString:(NSString *)string;
 + (NSDate *)dateFromString:(NSString *)string withFormat:(NSString *)format;

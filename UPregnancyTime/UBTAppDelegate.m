@@ -22,18 +22,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NotificationCenter *nc = [[[NotificationCenter alloc] init] autorelease];
+        //NotificationCenter *nc = [[[NotificationCenter alloc] init] autorelease];
         [application cancelAllLocalNotifications];
         //[application scheduleLocalNotification:[nc populateNotificationWithEntity:nil]]; 
     });
     
+    //设置导航栏
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    RootViewController *rootController = [[[RootViewController alloc] init] autorelease];
+    PeriodSettingViewController *rootController = [[[PeriodSettingViewController alloc] init] autorelease];
     UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:rootController] autorelease];
-    navigationController.navigationBarHidden = YES;
+    navigationController.navigationBarHidden = NO;
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     return YES;
