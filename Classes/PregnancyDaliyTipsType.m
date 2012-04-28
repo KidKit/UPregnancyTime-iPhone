@@ -9,7 +9,7 @@
 #import "PregnancyDaliyTipsType.h"
 
 @implementation PregnancyDaliyTipsType
-@synthesize id;
+@synthesize _id;
 @synthesize name;
 @synthesize name_index;
 
@@ -25,6 +25,6 @@
 }
 
 -(id)uniqueIdPropertyName{
-    return @"id";
+    return @"_id";
 }
 @end

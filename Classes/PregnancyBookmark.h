@@ -12,7 +12,7 @@
 @interface PregnancyBookmark : NSObject<Entity>
 
 
-@property (nonatomic,retain)NSNumber * id;
+@property (nonatomic,retain)NSNumber * _id;
 @property (nonatomic,retain)NSNumber * mark_at_day;
 @property (nonatomic,retain)NSNumber * mark_time;
 @property (nonatomic, retain) NSString * bookmark_type;

@@ -10,6 +10,7 @@
 #import "QuartzCore/QuartzCore.h"
 #import "LabelConverter.h"
 #import "UPTContentView.h"
+#import "CommonDataHolder.h"
 #import "DaliyTipsViewController.h"
 #import "HomeViewController.h"
 #import "TimeLineViewController.h"
@@ -19,6 +20,7 @@
 #import "SettingViewController.h"
 #import "MenuViewController.h"
 #import "RootViewDelegate.h"
+#import "IASKAppSettingsViewController.h"
 
 
 

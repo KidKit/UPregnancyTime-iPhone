@@ -12,8 +12,8 @@
 
 @interface PregnancyPeriod : NSObject<Entity>
 
-@property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSNumber * _id;
 @property (nonatomic, retain) NSDate * begin_date;
 @property (nonatomic, retain) NSDate * due_date;
-
+@property (nonatomic, retain) NSNumber * cycle;
 @end

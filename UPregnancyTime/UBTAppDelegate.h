@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 #import "PeriodSettingViewController.h"
+#import "CommonDataHolder.h"
 
-@interface UBTAppDelegate : UIResponder <UIApplicationDelegate>
+@interface UBTAppDelegate : UIResponder <UIApplicationDelegate,PeriodSettingDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

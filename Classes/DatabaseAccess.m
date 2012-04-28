@@ -197,7 +197,7 @@
     NSLog(@"update sql:%@",sql);
     [_db open];
     [_db beginTransaction];
-    [_db executeUpdate:sql withArgumentsInArray:vArray];
+    flag = [_db executeUpdate:sql withArgumentsInArray:vArray];
     [_db commit];
     [_db close];
     return flag;

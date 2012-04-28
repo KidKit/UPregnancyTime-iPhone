@@ -11,7 +11,7 @@
 
 @implementation PregnancyDaliyTips
 
-@synthesize id;
+@synthesize _id;
 @synthesize tips_key;
 @synthesize tips_data;
 @synthesize tips_data_index;
@@ -28,6 +28,6 @@
 }
 
 -(id)uniqueIdPropertyName{
-    return @"id";
+    return @"_id";
 }
 @end

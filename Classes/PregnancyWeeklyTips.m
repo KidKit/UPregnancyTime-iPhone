@@ -11,7 +11,7 @@
 
 @implementation PregnacyWeeklyTips
 
-@synthesize id;
+@synthesize _id;
 @synthesize tips_data;
 @synthesize tips_weekly;
 
@@ -25,6 +25,6 @@
 }
 
 -(id)uniqueIdPropertyName{
-    return @"id";
+    return @"_id";
 }
 @end

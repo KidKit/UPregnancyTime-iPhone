@@ -12,7 +12,7 @@
 
 @interface PregnacyWeeklyTips : NSObject<Entity>
 
-@property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSNumber * _id;
 @property (nonatomic, retain) NSString * tips_data;
 @property (nonatomic, retain) NSNumber * tips_weekly;
 

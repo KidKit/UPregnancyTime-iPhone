@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
-@interface PeriodSettingViewController : UIViewController<UITextFieldDelegate>
+#import "NSDate+Helper.h"
+#import "DatabaseAccess.h"
+#import "PregnancyPeriod.h"
+#import "MBProgressHUD.h"
+#import "CommonDataHolder.h"
+#import "IASKSettingsReader.h"
+@protocol PeriodSettingDelegate;
+@interface PeriodSettingViewController : UIViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic,retain)IBOutlet UIView *contentView;
 @property (nonatomic,retain)IBOutlet UILabel *noticeLabel;
@@ -23,5 +29,16 @@
 @property (nonatomic,retain)IBOutlet UITextField *mensesCycleField;
 
 @property (nonatomic,retain)IBOutlet UIDatePicker *datePicker;
+@property (nonatomic,retain)IBOutlet UIPickerView *cyclePicker;
+
+@property (nonatomic,assign)id<PeriodSettingDelegate> periodChangeDelegate;
+
+-(IBAction)onDatePickerValueChanged:(id)sender;
+-(void)savePeriod;
+@end
+@protocol PeriodSettingDelegate <NSObject>
+
+@required
+-(void)completedChange;
 
 @end

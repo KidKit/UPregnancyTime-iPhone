@@ -9,7 +9,7 @@
 #import "PregnancyBookmark.h"
 
 @implementation PregnancyBookmark
-@synthesize id=_id;
+@synthesize _id;
 @synthesize mark_time;
 @synthesize mark_at_day;
 @synthesize bookmark_key;
@@ -30,6 +30,6 @@
 }
 
 -(id)uniqueIdPropertyName{
-    return @"id";
+    return @"_id";
 }
 @end

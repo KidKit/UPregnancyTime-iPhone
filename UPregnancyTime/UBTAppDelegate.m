@@ -35,11 +35,18 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    PeriodSettingViewController *rootController = [[[PeriodSettingViewController alloc] init] autorelease];
-    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:rootController] autorelease];
-    navigationController.navigationBarHidden = NO;
-    self.window.rootViewController = navigationController;
-    [self.window makeKeyAndVisible];
+    id period = [[CommonDataHolder instance] loadPeriod];
+    if (period) {
+        [self completedChange];
+    }else {
+        PeriodSettingViewController *settingController = [[[PeriodSettingViewController alloc] init] autorelease];
+        settingController.periodChangeDelegate = self;
+        UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:settingController] autorelease];
+        navigationController.navigationBarHidden = NO;
+        self.window.rootViewController = navigationController;
+        [self.window makeKeyAndVisible];
+    }
+    
     return YES;
 }
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
@@ -72,5 +79,13 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+#pragma mark - PeriodSettingDelegate
 
+-(void)completedChange{
+    RootViewController *rootController = [[[RootViewController alloc] init] autorelease];
+    UINavigationController *navigationController = [[[UINavigationController alloc] initWithRootViewController:rootController] autorelease];
+    navigationController.navigationBarHidden = YES;
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
+}
 @end

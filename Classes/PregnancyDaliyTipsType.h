@@ -10,7 +10,7 @@
 #import "Entity.h"
 @interface PregnancyDaliyTipsType : NSObject<Entity>
 
-@property (nonatomic,retain)NSNumber *id;
+@property (nonatomic,retain)NSNumber *_id;
 @property (nonatomic,retain)NSString *name;
 @property (nonatomic,retain)NSString *name_index;
 @end

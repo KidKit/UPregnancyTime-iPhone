@@ -57,6 +57,7 @@
 - (NSDate *)endOfWeek;
 
 + (NSString *)dateFormatStringCN;
++ (NSString *)dateFormatStringCNFull;
 + (NSString *)dateFormatString;
 + (NSString *)timeFormatString;
 + (NSString *)timestampFormatString;

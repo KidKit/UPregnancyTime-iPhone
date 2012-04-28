@@ -66,14 +66,12 @@
     _timelineController.rootDelegate = self;
     _timelineController.view.frame = CGRectMake(self.view.frame.size.width-TIMELINE_VIEW_WIDTH, 0, TIMELINE_VIEW_WIDTH, _timelineController.view.frame.size.height);
     [self.view insertSubview:_timelineController.view belowSubview:_contentView];
- 
-    
     
     
     //显示内容
-    //_contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper"]];
     LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:kTodayTips];
     [self switchToControllerWithLabelInfo:labelInfo];
+    
     
     //设置背景
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu-background"]];
@@ -117,7 +115,11 @@
             baseController = [[[BookmarkTableViewController alloc] init] autorelease];
         }
         if ([controllerKey isEqualToString:kSettings]) {
-            baseController = [[[SettingViewController alloc] init] autorelease];
+            IASKAppSettingsViewController *settingController = [[[IASKAppSettingsViewController alloc] init] autorelease];
+            settingController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
+            //settingController.view.backgroundColor = [UIColor clearColor];
+            settingController.showDoneButton=NO;
+            baseController = settingController;
         }
         if(baseController){
             if ([baseController respondsToSelector:@selector(setRootDelegate:)]) {
@@ -128,17 +130,12 @@
             [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
             [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
             baseController.navigationItem.leftBarButtonItem = leftButton;
-            //首页才能往左滑动
             if ([controllerKey isEqualToString:kTodayTips]) {
-                leftMoveable = YES;
-                UIBarButtonItem *rightButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-timeline-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onTimeLineButtonClicked)] autorelease];
+                 UIBarButtonItem *rightButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-timeline-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onTimeLineButtonClicked)] autorelease];
                 [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
                 [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
                 baseController.navigationItem.rightBarButtonItem = rightButton;
-            }else {
-                leftMoveable = NO;
-            }
-            
+            }            
             
             CGRect frame = CGRectMake(0, 0, _contentView.frame.size.width, _contentView.frame.size.height);
             controller = [[[UINavigationController alloc] initWithRootViewController:baseController] autorelease];
@@ -149,6 +146,12 @@
         //TODO
     }
     if (controller) {
+        //首页才能往左滑动
+        if ([controllerKey isEqualToString:kTodayTips]) {
+            leftMoveable = YES;
+        }else {
+            leftMoveable = NO;
+        }
         [self performViewTransition:controller];
         self.currentViewControllerKey = controllerKey;
         
@@ -278,5 +281,11 @@
         }
         
     }
+}
+#pragma mark - PeriodSettingDelegate
+-(void)completedChange:(PregnancyPeriod *)period{
+    NSString *controllerKey = (_currentViewControllerKey)?_currentViewControllerKey:kTodayTips;
+    LabelInfo *labelInfo = [LabelConverter getLabelInfoWithIdentifier:controllerKey];
+    [self switchToControllerWithLabelInfo:labelInfo];
 }
 @end

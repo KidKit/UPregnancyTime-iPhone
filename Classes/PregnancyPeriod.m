@@ -11,12 +11,14 @@
 
 @implementation PregnancyPeriod
 
-@synthesize  id;
+@synthesize  _id;
 @synthesize begin_date;
 @synthesize due_date;
+@synthesize cycle;
 
 - (void)dealloc
 {
+    [_id release];
     [begin_date release];
     [due_date release];
     [super dealloc];
@@ -26,6 +28,6 @@
 }
 
 -(id)uniqueIdPropertyName{
-    return @"id";
+    return @"_id";
 }
 @end

@@ -15,14 +15,15 @@
     int _sequanceInWeek;
     int _currentTipsPageIndex;
     MBProgressHUD *_hud;
+    BOOL _needReload;
 }
--(void)loadPeriod;
 -(void)loadTips;
 -(void)reloadDayAndWeekLabel;
 -(void)removeScrollSubView;
 -(int)sequenceInDate:(NSDate *)date;
 -(int)sequenceInWeek:(int)sequenceInDate;
 -(void)innerGotoTipsViewByDay:(NSNumber *)day;
+-(void)dataChanged;
 @end
 
 @implementation DaliyTipsViewController
@@ -35,19 +36,15 @@
 @synthesize tips=_tips;
 @synthesize tipsViews=_tipsViews;
 @synthesize currentDate=_currentDate;
-@synthesize period=_period;
 @synthesize pageControl=_pageControl;
-
--(void)loadPeriod{
-    self.period = [[DatabaseAccess sharedAccess] executeQueryForUnique:[PregnancyPeriod class] withSql:@"select * from pregnancy_period" withArgumentsInArray:nil];
-    //[[[NSDate date] dateByAddingTimeInterval:(24*60*60*220)] timeIntervalSince1970]
-    //NSLog(@"_period.begin_date:%@",_period.begin_date);
+-(void)dataChanged{
+    _needReload  = YES;
 }
 -(void)loadTips{
     _sequanceInDate = [self sequenceInDate:_currentDate];
     _sequanceInWeek = [self sequenceInWeek:_sequanceInDate];
     NSArray *args = [NSArray  arrayWithObjects:[NSNumber numberWithInt:_sequanceInDate],nil];
-    self.tips = [[DatabaseAccess sharedAccess] executeQueryForList:[PregnancyDaliyTips class] limit:30  withSql:@"select * from pregnancy_daliy_tips_new where tips_day=? order by id asc" withArgumentsInArray:args];
+    self.tips = [[DatabaseAccess sharedAccess] executeQueryForList:[PregnancyDaliyTips class] limit:30  withSql:@"select * from pregnancy_daliy_tips_new where tips_day=? order by _id asc" withArgumentsInArray:args];
 }
 -(void)reloadDayAndWeekLabel{
     _weekLabel.text = [_currentDate weekdayCN];
@@ -56,12 +53,16 @@
 }
 -(int)sequenceInDate:(NSDate *)date{
     //开始时间距离实际当前时间的天数
+    PregnancyPeriod *_period = [[CommonDataHolder instance] loadPeriod];
     int realDaysAgo = [_period.begin_date daysAgoAgainstMidnight];
     //NSLog(@"days ago:%@ with %d",_period.begin_date,realDaysAgo);
     //给定时间距离当前时间的天数
     int currentDaysAgo = [date daysAgoAgainstMidnight];
     //NSLog(@"days ago:%@ with %d",date,currentDaysAgo);
-    return realDaysAgo-currentDaysAgo;
+    int res = realDaysAgo-currentDaysAgo;
+    res = (res<1)?1:res;
+    res = (res>280)?280:res;
+    return res;
 }
 
 -(int)sequenceInWeek:(int)sequenceInDate{
@@ -111,8 +112,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.currentDate = [NSDate date];
-        [self loadPeriod];
         [self loadTips];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChanged) name:kIASKAppSettingChanged object:nil];
     }
     return self;
 }
@@ -121,7 +122,6 @@
     [_tips release];
     [_tipsViews release];
     [_currentDate release];
-    [_period release];
     [_hud release];
     [super dealloc];
 }
@@ -156,6 +156,15 @@
     self.pageControl = nil;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if (_needReload) {
+        [self loadTips];
+        [self loadTipsViews];
+        [self reloadDayAndWeekLabel];
+        _needReload = NO;
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -175,6 +184,7 @@
     [_hud showWhileExecuting:@selector(innerGotoTipsViewByDay:) onTarget:self withObject:day animated:YES onMainThread:YES];
 }
 -(void)innerGotoTipsViewByDay:(NSNumber *)day{
+    PregnancyPeriod *_period = [[CommonDataHolder instance] loadPeriod];
     self.currentDate = [_period.begin_date dateByAddingTimeInterval:(24*60*60)*[day intValue]];
     [self loadTips];
     [self loadTipsViews];

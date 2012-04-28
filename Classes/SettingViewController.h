@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewDelegate.h"
+#import "IASKAppSettingsViewController.h"
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,assign) id<RootViewDelegate>rootDelegate;
 @end

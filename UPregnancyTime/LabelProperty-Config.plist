@@ -5,15 +5,15 @@
 	<key>kTodayTips</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>每日提醒</string>
+		<string>Tips</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Calendar</string>
+		<key>kLabelBgImage</key>
+		<string>Calendar</string>
 	</dict>
-    <key>kTimeline</key>
+	<key>kTimeline</key>
 	<dict>
 		<key>kLabelName</key>
 		<string>时光隧道</string>
@@ -21,21 +21,21 @@
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Clock</string>
+		<key>kLabelBgImage</key>
+		<string>Clock</string>
 	</dict>
 	<key>kQuestionAndAnswer</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>孕期问答</string>
+		<string>QuestionAndAnswer</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Help</string>
+		<key>kLabelBgImage</key>
+		<string>Help</string>
 	</dict>
-    <key>kSearchInfo</key>
+	<key>kSearchInfo</key>
 	<dict>
 		<key>kLabelName</key>
 		<string>知识搜索</string>
@@ -43,37 +43,37 @@
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Search</string>
+		<key>kLabelBgImage</key>
+		<string>Search</string>
 	</dict>
-    <key>kBookmarks</key>
+	<key>kBookmarks</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>收藏夹</string>
+		<string>Favorit</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Bookmarks</string>
+		<key>kLabelBgImage</key>
+		<string>Bookmarks</string>
 	</dict>
-    <key>kSettings</key>
+	<key>kSettings</key>
 	<dict>
 		<key>kLabelName</key>
-		<string>设置</string>
+		<string>Settings</string>
 		<key>kLabelIsRetractable</key>
 		<false/>
 		<key>kLabelIsParent</key>
 		<true/>
-        <key>kLabelBgImage</key>
-        <string>Settings</string>
+		<key>kLabelBgImage</key>
+		<string>Settings</string>
 	</dict>
-    <key>kSystemDefaultLabels</key>
+	<key>kSystemDefaultLabels</key>
 	<array>
 		<string>kTodayTips</string>
 		<string>kQuestionAndAnswer</string>
-        <string>kBookmarks</string>
-        <string>kSettings</string>
+		<string>kBookmarks</string>
+		<string>kSettings</string>
 	</array>
 </dict>
 </plist>

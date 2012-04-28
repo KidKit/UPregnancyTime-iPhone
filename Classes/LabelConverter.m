@@ -122,7 +122,7 @@ static LabelConverter *instance = nil;
 + (LabelInfo *)getLabelInfoWithIdentifier:(NSString *)identifier {
     LabelConverter *converter = [LabelConverter getInstance];
     NSDictionary *labelConfig = [converter.configMap objectForKey:identifier];
-    NSString *labelName = [labelConfig objectForKey:kLabelName];
+    NSString *labelName = NSLocalizedString([labelConfig objectForKey:kLabelName],@"");
     NSNumber *isRetractable = [labelConfig objectForKey:kLabelIsRetractable];
     NSNumber *isParent = [labelConfig objectForKey:kLabelIsParent];
     NSString *bgImage = [labelConfig objectForKey:kLabelBgImage];

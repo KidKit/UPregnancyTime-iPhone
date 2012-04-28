@@ -16,6 +16,8 @@
 #import "NSDate+Helper.h"
 #import "RootViewDelegate.h"
 #import "MBProgressHUD.h"
+#import "CommonDataHolder.h"
+#import "IASKSettingsReader.h"
 
 @interface DaliyTipsViewController : UIViewController<UIScrollViewDelegate,MBProgressHUDDelegate>
 
@@ -28,7 +30,6 @@
 
 @property (nonatomic,retain) NSArray *tips;
 @property (nonatomic,retain) NSDate *currentDate;
-@property (nonatomic,retain)PregnancyPeriod *period;
 @property (nonatomic,retain) NSMutableArray *tipsViews;
 
 -(void)gotoTipsViewByDay:(NSNumber *)day;
