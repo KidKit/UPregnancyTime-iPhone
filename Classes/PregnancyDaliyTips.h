@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "Entity.h"
 
-
 @interface PregnancyDaliyTips : NSObject<Entity>
 
 @property (nonatomic, retain) NSNumber * _id;

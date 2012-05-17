@@ -8,7 +8,7 @@
 
 #import "UBTAppDelegate.h"
 #import "NotificationCenter.h"
-
+#import "UINavigationBar+BG.h"
 @implementation UBTAppDelegate
 
 @synthesize window = _window;
@@ -28,9 +28,15 @@
     });
     
     //设置导航栏
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    if ([UINavigationBar resolveClassMethod:@selector(appearance)]) {
+        if ([[UINavigationBar appearance] respondsToSelector:@selector(setBackgroundImage:)]) {
+            [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"nav-bar"] forBarMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"nav-bar-back-button-pressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 4)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+        }
+    }
+    
+    
     
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

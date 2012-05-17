@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSObject+Addition.h"
+
 
 @protocol Entity <NSObject>
 

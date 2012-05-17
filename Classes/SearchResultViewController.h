@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionInfo.h"
+#import "QuestionDetailViewController.h"
 
-@interface SearchResultViewController : UIViewController
+@interface SearchResultViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic,retain)IBOutlet UITableView *resultView;
+@property (nonatomic,retain)NSArray *resultSet;
+
+-(id)initWithResult:(NSArray *)result;
 @end

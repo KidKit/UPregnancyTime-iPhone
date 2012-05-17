@@ -319,6 +319,10 @@ static NSDateFormatter *displayFormatter;
 	return @"yyyy年MM月dd日";
 }
 
++ (NSString *)dateTimeFormatStringCNFull {
+	return @"yyyy年MM月dd日 HH:mm:ss";
+}
+
 + (NSString *)dateFormatString {
 	return @"yyyy-MM-dd";
 }

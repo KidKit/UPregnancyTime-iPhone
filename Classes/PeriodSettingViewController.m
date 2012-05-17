@@ -115,8 +115,16 @@
     _contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"paper_bg"]];
     self.navigationItem.title = @"预产期设置";
     UIBarButtonItem *rightButton = [[[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(savePeriod)] autorelease];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    if ([rightButton respondsToSelector:@selector(setBackgroundImage:)]) {
+        [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    }else {
+//        UIButton * btn = [[[UIButton alloc] init] autorelease];
+//        [btn setImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal];
+//        [btn setTitle:@"完成" forState:UIControlStateNormal];
+//        rightButton = [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];
+    }
+    
     self.navigationItem.rightBarButtonItem = rightButton;
     
     _endDateLabel.font = [UIFont fontWithName:APP_TEXT_FONT_NAME size:20.0f];

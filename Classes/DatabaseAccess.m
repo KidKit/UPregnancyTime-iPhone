@@ -7,11 +7,10 @@
 //
 
 #import "DatabaseAccess.h"
-#import "NSObject+Properties.h"
 @interface DatabaseAccess(){
     
 }
--(id)parseObj:(Class)clazz FromResultset:(FMResultSet *)result;
+-(id)parseObj:(Class)clazz fromResultset:(FMResultSet *)result;
 @end
 @implementation DatabaseAccess
 
@@ -52,18 +51,8 @@
 }
 
 -(id)parseObj:(Class)clazz fromResultset:(FMResultSet *)result{
-    id obj = [clazz new];
-    u_int p_count;   
-    objc_property_t *properties  = class_copyPropertyList(clazz, &p_count);
-    for (int i = 0; i < p_count ; i++)   
-    {  
-        const char* propertyName = property_getName(properties[i]);
-        NSString *pName = [NSString  stringWithUTF8String: propertyName];
-        const char* propertyTypeName = [obj typeOfPropertyNamed:pName];
-        NSString *pTypeName = [NSString  stringWithUTF8String: propertyTypeName];
-        //NSLog(@"propertyTypeName:%@",pTypeName);
+    return [clazz objWithDelegate:^id(NSString * pTypeName, NSString * pName) {
         id pValue = nil;
-        
         if([pTypeName rangeOfString:@"Number"].length>0){
             pValue = [result objectForColumnName:pName];
         }
@@ -79,14 +68,8 @@
         if(!pValue){
             pValue = [result objectForColumnName:pName];
         }
-        SEL setter = [obj setterForPropertyNamed:pName];
-        if([obj respondsToSelector:setter]){
-            [obj performSelector:setter withObject:pValue];
-        }
-        //[obj setValue:pValue forKey:pName];
-    }
-    free(properties);
-    return [obj autorelease];
+        return pValue;
+    }];
 }
 
 -(id)executeQueryForUnique:(Class) clazz withSql:(NSString *)sql withArgumentsInArray:(NSArray *)args{
@@ -204,3 +187,4 @@
 }
 
 @end
+

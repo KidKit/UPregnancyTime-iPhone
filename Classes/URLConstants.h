@@ -10,5 +10,7 @@
 #define UPregnancyTime_URLConstants_h
 
 #define HOT_WORDS_URL @"http://pipepos.dyndns.org:88/y/get/pop"
+#define SEARCH_URL @"http://pipepos.dyndns.org:88/y/search?q="
+#define FETCH_QUESTION_URL @"http://pipepos.dyndns.org:88/y/get/question?id="
 
 #endif

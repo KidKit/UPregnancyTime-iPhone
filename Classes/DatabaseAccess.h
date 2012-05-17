@@ -11,6 +11,7 @@
 #import "FMDatabase.h"
 #import <objc/runtime.h>
 #import "Entity.h"
+#import "NSObject+Addition.h"
 
 @interface DatabaseAccess : NSObject
 {
@@ -32,3 +33,4 @@
 
 
 @end
+

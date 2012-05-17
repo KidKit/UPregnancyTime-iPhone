@@ -58,6 +58,7 @@
 
 + (NSString *)dateFormatStringCN;
 + (NSString *)dateFormatStringCNFull;
++ (NSString *)dateTimeFormatStringCNFull;
 + (NSString *)dateFormatString;
 + (NSString *)timeFormatString;
 + (NSString *)timestampFormatString;

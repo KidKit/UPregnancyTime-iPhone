@@ -14,6 +14,7 @@
 #import "DaliyTipsViewController.h"
 #import "HomeViewController.h"
 #import "TimeLineViewController.h"
+#import "QATabViewController.h"
 #import "QAViewController.h"
 #import "SearchViewController.h"
 #import "BookmarkTableViewController.h"

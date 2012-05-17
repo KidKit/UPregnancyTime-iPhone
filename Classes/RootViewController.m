@@ -127,13 +127,17 @@
             }
             baseController.navigationItem.title = titleName;
             UIBarButtonItem *leftButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-menu-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onMenuButtonClicked)] autorelease];
-            [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-            [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+            if ([leftButton respondsToSelector:@selector(setBackgroundImage:)]) {
+                [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+                [leftButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+            }
             baseController.navigationItem.leftBarButtonItem = leftButton;
             if ([controllerKey isEqualToString:kTodayTips]) {
                  UIBarButtonItem *rightButton = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-timeline-icon"] style:UIBarButtonItemStyleBordered target:self action:@selector(onTimeLineButtonClicked)] autorelease];
-                [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-                [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+                if ([rightButton respondsToSelector:@selector(setBackgroundImage:)]) {
+                    [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+                    [rightButton setBackgroundImage:[UIImage imageNamed:@"nav-bar-button-pressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+                }
                 baseController.navigationItem.rightBarButtonItem = rightButton;
             }            
             
